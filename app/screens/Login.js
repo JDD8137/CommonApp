@@ -21,6 +21,7 @@ export default class Login extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <Container style={colorStyles.primary}>
         <Content contentContainerStyle={{flex:1, flexDirection: "column", justifyContent: "space-between", alignItems:"center",paddingLeft: 10,paddingRight: 10,}}>
@@ -58,7 +59,7 @@ export default class Login extends Component {
           <Text style={[colorStyles.primaryText, {textAlign:"center", marginTop:20}]} onPress={() => {navigate('Signup')}}>
             Don't have an account yet? <Text style={{color:"#4cb1ff"}}>Sign up!</Text>
           </Text>
-          <Text style={{textAlign:"center", color:"#4cb1ff"}} onPress={() => {navigate('ForgotPassword')}}>
+          <Text style={{textAlign:"center", color:"#4cb1ff"}} onPress={() => {navigate('Signup')}}>
             Forgot Password?
           </Text>
           </View>
