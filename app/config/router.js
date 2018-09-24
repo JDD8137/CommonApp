@@ -7,6 +7,8 @@ import {
 
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
+import Home from '../screens/Home';
+import Search from '../screens/Search';
 
 export const Root = StackNavigator({
     Login: {
@@ -15,6 +17,12 @@ export const Root = StackNavigator({
     Signup: {
     	  screen: Signup
     },
+    Home: {
+      screen: Home
+    },
+    Search: {
+        screen: Search
+    }
 }, {
   mode: 'modal',
   headerMode: 'none',

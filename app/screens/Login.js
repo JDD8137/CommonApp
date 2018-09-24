@@ -51,8 +51,7 @@ export default class Login extends Component {
             />
           </InputGroup>
 
-          <Button block style={{marginTop:10}} onPress={() => {
-          }}>
+          <Button block style={{marginTop:10}} onPress={() => {navigate('Home')}}>
             <Text> Sign in </Text>
           </Button>
 
@@ -62,6 +61,24 @@ export default class Login extends Component {
           <Text style={{textAlign:"center", color:"#4cb1ff"}} onPress={() => {navigate('Signup')}}>
             Forgot Password?
           </Text>
+
+          {/* TODO: FACEBOOK AUTH */}
+          <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
+              {/* <Icon type="FontAwesome" name="facebook" size={12} /> */}
+              <Text style={styles.facebookSignin}>
+                Continue with Facebook
+              </Text>
+          </View>
+          
+          {/* TODO: GOOGLE AUTH */}
+          <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
+              {/* <Icon type="FontAwesome" name="google" size={12} /> */}
+              <Text style={styles.googleSignin}>
+                Continue with Google
+              </Text>
+          </View>
+          
+
           </View>
           <Text style={[{marginBottom: 10},colorStyles.primaryText]}>Powered by Blockchain</Text>
         </Content>
