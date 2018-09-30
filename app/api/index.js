@@ -1,5 +1,6 @@
 import _ from "lodash";
 import universities from "./universities";
+import './global.js';
 
 export const contains = ({ name, acronym, location }, query) => {
   if (name.toUpperCase().includes(query.toUpperCase())

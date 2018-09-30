@@ -36,6 +36,16 @@ export const styles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 18
 	},
+	TitleName2: {
+        color: '#000000',
+        fontWeight: '600',
+        fontSize: 18
+    },
+    FilterLabel: {
+         color: '#000000',
+         fontWeight: '600',
+         fontSize: 16
+    },
 	IDContainer: {
 		paddingTop: 4
 

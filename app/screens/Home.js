@@ -42,7 +42,7 @@ export default class Home extends Component {
                             <Text style={styles.GridTitleText}>Applications</Text>
                         </View>
                         <View style={styles.gridComponent}>
-                            <Icon type="FontAwesome" name="university" style={[colorStyles.primaryText, styles.HomeIcon]} onPress={() => {navigate('Search')}}></Icon>
+                            <Icon type="FontAwesome" name="university" style={[colorStyles.primaryText, styles.HomeIcon]} onPress={() => {navigate('Filter', {isPublic: false})}}></Icon>
                             <Text style={[styles.GridTitleText]}>Search Universities</Text>
                         </View>
                     </View>
