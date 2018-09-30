@@ -14,6 +14,12 @@ import {
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginButton,
+  AccessToken
+} = FBSDK;
+
 import { Alert } from 'react-native';
 import { Authenticator } from '../models/Authenticator'
 
@@ -94,11 +100,23 @@ export default class Login extends Component {
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               {/* <Icon type="FontAwesome" name="facebook" size={12} /> */}
 
-              <Button>
-                <Text style={styles.facebookSignin}>
-                  Continue with Facebook
-                </Text>
-              </Button>
+              <LoginButton
+                onLoginFinished={
+                  (error, result) => {
+                    if (error) {
+                      alert("login has error: " + result.error);
+                    } else if (result.isCancelled) {
+                      alert("login is cancelled.");
+                    } else {
+                      AccessToken.getCurrentAccessToken().then(
+                        (data) => {
+                          alert(data.accessToken.toString())
+                        }
+                      )
+                    }
+                  }
+                }
+                onLogoutFinished={() => alert("logout.")}/>
           </View>
           
           {/* TODO: GOOGLE AUTH */}
