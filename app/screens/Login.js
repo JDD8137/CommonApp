@@ -14,10 +14,38 @@ import {
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 
+import { Alert } from 'react-native';
+import { Authenticator } from '../models/Authenticator'
+
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      email: '',
+      password: '',
+    }
+  }
+
+  updateEmail(email) {
+    this.setState({email});
+  }
+
+  updatePassword(password) {
+    this.setState({password});
+  }
+
+  login() {
+    const { email, password } = this.state;
+    this.state.disableAutoLogin = true;
+    Authenticator.login(email, password)
+      .then(() => {
+        this.props.navigation.navigate("Home");
+      })
+      .catch(() => {
+        Alert.alert("Invalid Username and Password.");
+      });
+
   }
 
   render() {
@@ -51,7 +79,7 @@ export default class Login extends Component {
             />
           </InputGroup>
 
-          <Button block style={{marginTop:10}} onPress={() => {navigate('Home')}}>
+          <Button block style={{marginTop:10}} onPress={() => {this.login()}}>
             <Text> Sign in </Text>
           </Button>
 
@@ -65,17 +93,23 @@ export default class Login extends Component {
           {/* TODO: FACEBOOK AUTH */}
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               {/* <Icon type="FontAwesome" name="facebook" size={12} /> */}
-              <Text style={styles.facebookSignin}>
-                Continue with Facebook
-              </Text>
+
+              <Button>
+                <Text style={styles.facebookSignin}>
+                  Continue with Facebook
+                </Text>
+              </Button>
           </View>
           
           {/* TODO: GOOGLE AUTH */}
           <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
               {/* <Icon type="FontAwesome" name="google" size={12} /> */}
-              <Text style={styles.googleSignin}>
+              <Button onPress={() => {this.loginWithGoogle()}}>
+                <Text style={styles.googleSignin}>
                 Continue with Google
               </Text>
+              </Button>
+              
           </View>
           
 
