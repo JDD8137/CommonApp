@@ -14,6 +14,8 @@ import {
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 
+import {TouchableOpacity} from "react-native"
+
 const FBSDK = require('react-native-fbsdk');
 const {
   LoginButton,
@@ -110,21 +112,21 @@ export default class Login extends Component {
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               {/* <Icon type="FontAwesome" name="facebook" size={12} /> */}
 
-              <Button onPress={() => {this.loginWithFacebook()}}>
+              <TouchableOpacity onPress={() => {this.loginWithFacebook()}}>
                 <Text style={styles.facebookSignin}>
                 Continue with Facebook
               </Text>
-              </Button>
+              </TouchableOpacity>
           </View>
           
           {/* TODO: GOOGLE AUTH */}
           <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
               {/* <Icon type="FontAwesome" name="google" size={12} /> */}
-              <Button onPress={() => {this.loginWithGoogle()}}>
+              <TouchableOpacity onPress={() => {this.loginWithGoogle()}}>
                 <Text style={styles.googleSignin}>
                 Continue with Google
               </Text>
-              </Button>
+              </TouchableOpacity>
               
           </View>
           
