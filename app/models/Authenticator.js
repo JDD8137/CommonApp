@@ -49,14 +49,28 @@ export class Authenticator {
 
     static register(email, password, result) {
         return new Promise(function(resolve, reject) {
-            firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password)
+            firebase.auth().createUserWithEmailAndPassword(email, password)
                 .then(() => {
                     resolve();
                 })
-                .catch(() => {
+                .catch((error) => {
                     reject();
                 });
         });
 
+    }
+
+    static updateDisplayName(name) {
+        return new Promise((resolve, reject) => {
+          var user = firebase.auth().currentUser;
+
+          user.updateProfile({
+            displayName: name,
+          }).then(function() {
+            resolve()
+          }).catch(function(error) {
+            reject(error);
+          });
+        })
     }
 }

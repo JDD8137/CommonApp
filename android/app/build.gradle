@@ -137,14 +137,15 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-firebase')
-    compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
-    compile "com.facebook.react:react-native:+"  // From node_modules
+    implementation project(':react-native-firebase')
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
+    implementation "com.facebook.react:react-native:+"  // From node_modules
 
       // Firebase dependencies
       implementation "com.google.android.gms:play-services-base:15.0.1"
       implementation "com.google.firebase:firebase-core:16.0.3"
+      implementation 'com.google.firebase:firebase-auth:16.0.3'
 
 }
 

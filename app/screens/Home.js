@@ -12,11 +12,15 @@ import {
 } from 'native-base'
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
+import { Database } from "../models/Database"
 
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      name: Database.getUserName()
+    }
   }
 
   render() {
@@ -26,7 +30,7 @@ export default class Home extends Component {
             <View style={styles.TitleContainer}>
                 <View style={styles.TitleHeader}>
                     <Text style={styles.TitleName}>
-                        FirstName LastName
+                        {this.state.name}
                     </Text>
                 </View>
                 <View style={styles.IDContainer}>
