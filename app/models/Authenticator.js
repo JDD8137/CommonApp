@@ -1,5 +1,11 @@
 import firebase from 'react-native-firebase';
 
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginManager,
+  AccessToken,
+} = FBSDK;
+
 export class Authenticator {
 
     static login(email, password) {
@@ -23,6 +29,34 @@ export class Authenticator {
             .catch((error) => {
                 reject(error);
             })
+        })
+    }
+
+    static loginWithFacebook() {
+        return new Promise((resolve, reject) => {
+          LoginManager.logInWithReadPermissions(['email'])
+          .then(
+            (result) => {
+              if (result.isCancelled) {
+                reject();
+              } else {
+                AccessToken.getCurrentAccessToken()
+                  .then((data) => {
+                    const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+                    firebase.auth().signInWithCredential(credential)
+                      .then(() => {
+                        resolve();
+                      })
+                      .catch((error) => {
+                        reject();
+                      });
+                  });
+              }
+            },
+            (error) => {
+              reject();
+            },
+          );
         })
     }
 

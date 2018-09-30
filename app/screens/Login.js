@@ -54,6 +54,16 @@ export default class Login extends Component {
 
   }
 
+  loginWithFacebook() {
+    Authenticator.loginWithFacebook()
+      .then(() => {
+        this.props.navigation.navigate("Home");
+      })
+      .catch(() => {
+        Alert.alert("Unable to login with facebook.");
+      });
+  }
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -100,23 +110,11 @@ export default class Login extends Component {
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               {/* <Icon type="FontAwesome" name="facebook" size={12} /> */}
 
-              <LoginButton
-                onLoginFinished={
-                  (error, result) => {
-                    if (error) {
-                      alert("login has error: " + result.error);
-                    } else if (result.isCancelled) {
-                      alert("login is cancelled.");
-                    } else {
-                      AccessToken.getCurrentAccessToken().then(
-                        (data) => {
-                          alert(data.accessToken.toString())
-                        }
-                      )
-                    }
-                  }
-                }
-                onLogoutFinished={() => alert("logout.")}/>
+              <Button onPress={() => {this.loginWithFacebook()}}>
+                <Text style={styles.facebookSignin}>
+                Continue with Facebook
+              </Text>
+              </Button>
           </View>
           
           {/* TODO: GOOGLE AUTH */}
