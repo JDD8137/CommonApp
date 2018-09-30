@@ -69,7 +69,8 @@ export const styles = StyleSheet.create({
 		
 	},
 	GridComponent: {
-		padding: 32
+		padding: 32,
+
 
 	},
 	GridTitleText: {
@@ -79,5 +80,15 @@ export const styles = StyleSheet.create({
 	},
 	HomeIcon: {
 		fontSize: 112,
+	},
+	UniversityIcon: {
+		fontSize: 90,
+		paddingLeft: 16,
+		paddingBottom: 24,
+		paddingTop: 10
+	},
+	ProfileIcon: {
+		fontSize: 112,
+		paddingBottom: 10
 	}
 });
