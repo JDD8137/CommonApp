@@ -13,6 +13,9 @@ export const colorStyles = StyleSheet.create({
     primary: {
         backgroundColor: colorPalette.primary
     },
+    primary2: {
+        backgroundColor: colorPalette.primaryText
+    },
     primaryText: {
         color: colorPalette.primaryText
     },

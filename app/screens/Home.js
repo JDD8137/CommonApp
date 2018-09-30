@@ -46,7 +46,7 @@ export default class Home extends Component {
                             <Text style={styles.GridTitleText}>Applications</Text>
                         </View>
                         <View style={styles.gridComponent}>
-                            <Icon type="FontAwesome" name="university" style={[colorStyles.primaryText, styles.HomeIcon]} onPress={() => {navigate('Search')}}></Icon>
+                            <Icon type="FontAwesome" name="university" style={[colorStyles.primaryText, styles.UniversityIcon]} onPress={() => {navigate('Filter', {isPublic: false})}}></Icon>
                             <Text style={[styles.GridTitleText]}>Search Universities</Text>
                         </View>
                     </View>
@@ -57,7 +57,7 @@ export default class Home extends Component {
                             <Text style={styles.GridTitleText}>Check Status</Text>
                         </View>
                         <View style={styles.gridComponent}>
-                            <Icon type="MaterialIcons" name="person" style={[colorStyles.primaryText, styles.HomeIcon]}></Icon>
+                            <Icon type="MaterialIcons" name="person" style={[colorStyles.primaryText, styles.ProfileIcon]}></Icon>
                             <Text style={styles.GridTitleText}>My Profile</Text>
                         </View> 
                     </View>
