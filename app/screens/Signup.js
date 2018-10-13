@@ -27,7 +27,7 @@ export default class Signup extends Component {
     const { navigate } = this.props.navigation;
     return(
       <Container>
-        <Text>Hello</Text>
+        <Text>Signup page</Text>
       </Container>
     );
   }

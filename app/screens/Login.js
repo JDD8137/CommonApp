@@ -51,7 +51,7 @@ export default class Login extends Component {
             />
           </InputGroup>
 
-          <Button block style={{marginTop:10}} onPress={() => {navigate('Home')}}>
+          <Button block style={{marginTop:10}} onPress={() => this.props.navigation.navigate('HomeStack')}>
             <Text> Sign in </Text>
           </Button>
 
@@ -77,12 +77,9 @@ export default class Login extends Component {
                 Continue with Google
               </Text>
           </View>
-          
-
-          </View>
-          <Text style={[{marginBottom: 10},colorStyles.primaryText]}>Powered by Blockchain</Text>
-        </Content>
-      </Container>
+        </View>
+      </Content>
+    </Container>
     );
   }
 }
