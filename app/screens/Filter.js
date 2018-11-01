@@ -2,26 +2,14 @@ import React, { Component } from "react";
 import {
   View,
   Text,
-  FlatList,
-  ActivityIndicator,
-  SafeAreaView,
   Button
 } from "react-native";
 import {
   Container,
-  Content,
-  Footer,
-  Input,
-  Icon,
-  Spinner,
 } from 'native-base'
-import { List, ListItem, SearchBar } from "react-native-elements";
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 import _ from "lodash";
-import { getUniversities, contains } from "../api/index";
-//import isPublic from "../api/global"
-//import isPrivate from "../api/global"
 
 export default class Search extends Component {
   constructor(props) {

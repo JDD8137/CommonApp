@@ -111,8 +111,32 @@ export const styles = StyleSheet.create({
         width   : 25,
         height  : 25
     },
-    PanelBody        : {
+    PanelBody       : {
         padding     : 0,
-        paddingTop  : 0
-    }
+		paddingTop  : 0,
+		flexDirection: 'row',
+		flex: 1
+	},
+	PanelRowTop: {
+		flex: 3,
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'stretch'
+	},
+	PanelRowBottom: {
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	PanelColumn: {
+		flex: 1,
+		flexDirection: 'column',
+		padding: 4
+		// justifyContent: 'space-between',
+	},
+	searchFilterItem: {
+		flex: 1,
+		padding: 8,
+	}
 });

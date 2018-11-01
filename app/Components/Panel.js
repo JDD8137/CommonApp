@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Text,View,Image,TouchableHighlight,Animated} from 'react-native';
 import { styles } from '../styles/styles';
+import { Button } from "react-native-elements";
 
 class Panel extends Component{
     constructor(props){
@@ -36,7 +37,7 @@ class Panel extends Component{
 
     _setMaxHeight(event){
         this.setState({
-            maxHeight   : event.nativeEvent.layout.height,
+            maxHeight   : event.nativeEvent.layout.height + 62,
         });
     }
 
@@ -55,6 +56,8 @@ class Panel extends Component{
 
     render(){
         let icon = this.icons['down'];
+
+        const children = this.props.children;
 
         if(this.state.expanded){
             icon = this.icons['up'];
@@ -75,11 +78,32 @@ class Panel extends Component{
                         ></Image>
                     </TouchableHighlight>
                 </View>
+
+                {children[0]}
                 
                 <View style={styles.PanelBody} onLayout={this._setMaxHeight.bind(this)}>
-                    {this.props.children}
+                    <View style={styles.PanelRowTop}>
+                        <View style={styles.PanelColumn}>
+                            <View style={styles.SearchFilterItem}>
+                                {children[1]}  
+                            </View>
+                            <View style={{height: 8}}/>
+                            <View style={styles.SearchFilterItem}>
+                                {children[2]}  
+                            </View>
+                        </View>
+                        <View style={styles.PanelColumn}>
+                            {children[3]}
+                            <View style={{height: 8}}/>
+                            {children[4]}
+                        </View>
+                    </View>
+
                 </View>
 
+                <View style={styles.PanelRowBottom}>
+                        {children[5]}
+                </View>
             </Animated.View>
         );
     }

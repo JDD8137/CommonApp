@@ -1,26 +1,22 @@
 import React, { Component } from "react";
 import {
-  AppRegistry,
+	AppRegistry,
+	Button,
   Icon,
   View,
-  Text,
   Image,
   FlatList,
   ActivityIndicator,
-  SafeAreaView,
-  Button
+  SafeAreaView
 } from "react-native";
+
 import { List, ListItem, SearchBar } from "react-native-elements";
-import {SettingsSwitch, SettingsPicker} from 'react-native-settings-components';
 import { styles } from '../styles/styles';
 import Panel from '../Components/Panel';
 import { colorStyles, colorPalette } from "../styles/colorStyles";
 import _ from "lodash";
+import ToggleSwitch from "toggle-switch-react-native"
 import { getUniversities, contains } from "../api/index";
-//import isPublic from "../api/global"
-//import isPrivate from "../api/global"
-
-
 
 export default class Search extends Component {
   constructor(props) {
@@ -28,14 +24,19 @@ export default class Search extends Component {
 
     this.state = {
       loading: false,
-      data: [],
+			data: [],
+			filters: [],
       error: null,
       query: "",
-      fullData: [],
-      hasSport: false,
-      isProfit: false,
-      isP: false,
-      expanded: false
+			fullData: [],
+			clearAll: false,
+			isPub: false,
+			isPriv: false,
+			isProf: false,
+			isNonProf: false,
+			hasSport: false,
+      expanded: false,
+      groupSize: 3
     };
   }
 
@@ -84,8 +85,6 @@ export default class Search extends Component {
     this.setState({ data, query: text }, () => this.makeRemoteRequest());
   };
 
-
-
   renderSeparator = () => {
     return (
       <View
@@ -98,7 +97,7 @@ export default class Search extends Component {
 
       />
     );
-  };
+	};
 
   getPublic() {
   return this.props.navigation.getParam('isPublic', false);
@@ -126,8 +125,6 @@ export default class Search extends Component {
 
   renderHeader = () => {
   const { navigate } = this.props.navigation;
-  const isP = this.getPublic();
-  const isPr = this.getPrivate();
 
     return (
     <View style={styles.GridColumnContainer}>
@@ -138,56 +135,88 @@ export default class Search extends Component {
         onChangeText={this.handleSearch}
       />
       <Panel title="Filters">
-        <SettingsSwitch
-            title={'Private'}
-            onSaveValue={(value) => {
-                console.log('allow push notifications:', value);
-                this.setState({
-                    allowPushNotifications: value
-                });
-            }}
-            value={this.state.allowPushNotifications}
-            thumbTintColor={(this.state.allowPushNotifications) ? colorPalette.switchEnabled : colorPalette.switchDisabled}
+				<Button
+					title="Clear all"
+					color='red'
+					onPress={() => {
+						this.setState({
+							isPub: false,
+							isPriv: false,
+							isProf: false,
+							isNonProf: false,
+							hasSport: false,
+						});
+						// handle search
+						this.handleSearch;
+					}}
         />
-        <SettingsSwitch
-            title={'Non-Profit'}
-            onSaveValue={(value) => {
-                console.log('allow push notifications:', value);
-                this.setState({
-                    allowPushNotifications: value
-                });
-            }}
-            value={this.state.allowPushNotifications}
-            thumbTintColor={(this.state.allowPushNotifications) ? colorPalette.switchEnabled : colorPalette.switchDisabled}
-        />
-        <SettingsSwitch
-            title={'Sports Facilities'}
-            onSaveValue={(value) => {
-                console.log('allow push notifications:', value);
-                this.setState({
-                    hasSport
-                });
-            }}
-            value={this.state.allowPushNotifications}
-            thumbTintColor={(this.state.allowPushNotifications) ? colorPalette.switchEnabled : colorPalette.switchDisabled}
-        />
-      </Panel>
-      {/* <View style={styles.FilterLabel}> */}
-        {/* <Text style={styles.FilterLabel}>Filter</Text> */}
-        {/* <Icon type="FontAwesome" name="university" style={[colorStyles.primaryText, styles.UniversityIcon]} onPress={() => {navigate('Filter', {isPublic: false})}}></Icon> */}
-        {/* <Button
-          onPress={() => {navigate('Filter')}}
-          title="Filter >"
-          color="#841584"
-          accessibilityLabel="Filter Universities"
-        /> */}
-        {/* <Image>
 
-        </Image> */}
-      {/* </View> */}
-    </View>
-    );
-  };
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.isPub}
+					isOff={!this.state.isPub}
+					label='Public '
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+						this.setState({isPub: isOn})
+						this.state.data = this.state.data.filter(item => item.is_public == isOn, this.handleSearch);
+					}}
+					onToggle={(isOff) => {
+						this.setState({isPub: isOff})
+						this.state.data = this.state.fullData;
+
+					}}
+				/>
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.isPriv}
+					label='Private'
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+						this.setState({isPriv: isOn});
+						this.state.data = this.state.data.filter(item => item.is_public == isOn, this.handleSearch);
+					}}
+				/>
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.isProf}
+					label='Profit        '
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+							this.setState({isProf: isOn});
+							this.state.data = this.state.data.filter(item => item.is_non_profit == isOn, this.handleSearch);
+					}}
+					// isOn={this.state.isProf}
+				/>
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.isNonProf}
+					label='Non-Profit'
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+							this.setState({isNonProf: isOn});
+							this.state.data = this.state.data.filter(item => item.is_non_profit == isOn, this.handleSearch);
+					}}
+				/>
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.hasSport}
+					label='Sports Facility'
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+							this.setState({hasSport: isOn});
+							this.state.data = this.state.data.filter(item => item.has_sports_facility == isOn, this.handleSearch);
+					}}
+				/>
+			</Panel>
+		</View>
+		);
+	};
 
   renderFooter = () => {
     if (!this.state.loading) return null;
@@ -202,7 +231,6 @@ export default class Search extends Component {
       >
         <ActivityIndicator animating size="large" />
       </View>
-
     );
   };
 
@@ -233,19 +261,27 @@ export default class Search extends Component {
           this.state.data = this.state.data.filter(item => item.has_sports_facility == false);
     }
     return (
-
-
       <SafeAreaView>
         <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
           <FlatList
             data={this.state.data}
             renderItem={({ item }) => (
               <ListItem
-                roundAvatar
+                // roundAvatar
                 title={`${item.name}`}
                 subtitle={`${item.acronym} - ${item.location}`}
-                // avatar={{ uri: item.picture.thumbnail }}
-                containerStyle={{ borderBottomWidth: 0 }}
+								containerStyle={{ borderBottomWidth: 0 }}
+								// leftIcon={name='check'}
+								onPress={() => {
+									<Panel title={'${item.name}'}>
+										<div>
+											Hello
+										</div>
+									</Panel>
+								}}
+								// leftIconOnPress={() => {
+								// 	// make icon green checkmark and add to array of selected universities
+								// }}
               />
             )}
             keyExtractor={item => item.name}
