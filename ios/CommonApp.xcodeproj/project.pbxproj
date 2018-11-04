@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -348,6 +349,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
 		};
+		DE4173A4218F3C6E0070C31F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE41739F218F3C6D0070C31F /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
+		};
+		DE4173A6218F3C6E0070C31F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DE41739F218F3C6D0070C31F /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 323A12871E5F266B004975B8;
+			remoteInfo = "ART-tvOS";
+		};
 		DEEC25BD2161567D00A58C5D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DEEC25B92161567C00A58C5D /* RCTFBSDK.xcodeproj */;
@@ -414,6 +429,7 @@
 		AEA440F302CE46FE9D897890 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		D1D7A14966F8D2245EAE143B /* Pods-CommonAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CommonAppTests/Pods-CommonAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		DE18E85D2161283C004A87DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "CommonApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DE41739F218F3C6D0070C31F /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		DEEC25582161526C00A58C5D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		DEEC25802161527E00A58C5D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		DEEC25812161527E00A58C5D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -611,6 +627,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DE41739F218F3C6D0070C31F /* ART.xcodeproj */,
 				DEEC25B92161567C00A58C5D /* RCTFBSDK.xcodeproj */,
 				DEEC25822161527E00A58C5D /* FBSDKCoreKit.framework */,
 				DEEC25802161527E00A58C5D /* FBSDKLoginKit.framework */,
@@ -764,6 +781,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DE4173A0218F3C6D0070C31F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DE4173A5218F3C6E0070C31F /* libART.a */,
+				DE4173A7218F3C6E0070C31F /* libART-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		DEEC25BA2161567C00A58C5D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -887,6 +913,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = DE4173A0218F3C6D0070C31F /* Products */;
+					ProjectRef = DE41739F218F3C6D0070C31F /* ART.xcodeproj */;
+				},
 				{
 					ProductGroup = 00C302A81ABCB8CE00DB3ED1 /* Products */;
 					ProjectRef = 00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */;
@@ -1219,6 +1249,20 @@
 			fileType = archive.ar;
 			path = libRNFirebase.a;
 			remoteRef = DE18E85B216127A7004A87DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE4173A5218F3C6E0070C31F /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = DE4173A4218F3C6E0070C31F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DE4173A7218F3C6E0070C31F /* libART-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libART-tvOS.a";
+			remoteRef = DE4173A6218F3C6E0070C31F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		DEEC25BE2161567D00A58C5D /* libRCTFBSDK.a */ = {

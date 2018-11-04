@@ -132,7 +132,6 @@ export default class Login extends Component {
           
 
           </View>
-          <Text style={[{marginBottom: 10},colorStyles.primaryText]}>Powered by Blockchain</Text>
         </Content>
       </Container>
     );
