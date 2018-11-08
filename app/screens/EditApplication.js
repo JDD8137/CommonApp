@@ -94,8 +94,10 @@ export default class EditApplication extends Component {
                             modalTransparent={false}
                             animationType={"fade"}
                             androidMode={"default"}
-                            placeHolderText="Select date"
+                            placeHolderText={this.state.applicant.dateOfBirth == "" ? "Select date" : null}
                             formatChosenDate={date => {return date.toString().substr(4, 12);}}
+                            defaultDate={new Date(this.state.applicant.dateOfBirth)}
+                            onDateChange={(date) => {this.setState({applicant: {...this.state.applicant, dateOfBirth: date.toString()}})}}
                         />
                     </Item>
                     <Item inlineLabel>
@@ -126,8 +128,10 @@ export default class EditApplication extends Component {
                             modalTransparent={false}
                             animationType={"fade"}
                             androidMode={"default"}
-                            placeHolderText="Select date"
+                            placeHolderText={this.state.applicant.dateStartedHighSchool == "" ? "Select date" : null}
                             formatChosenDate={date => {return date.toString().substr(4, 12);}}
+                            defaultDate={new Date(this.state.applicant.dateStartedHighSchool)}
+                            onDateChange={(date) => {this.setState({applicant: {...this.state.applicant, dateStartedHighSchool: date.toString()}})}}
                         />
                     </Item>
                     <Item inlineLabel>
@@ -137,8 +141,10 @@ export default class EditApplication extends Component {
                             modalTransparent={false}
                             animationType={"fade"}
                             androidMode={"default"}
-                            placeHolderText="Select date"
+                            placeHolderText={this.state.applicant.dateGraduatedHighSchool == "" ? "Select date" : null}
                             formatChosenDate={date => {return date.toString().substr(4, 12);}}
+                            defaultDate={new Date(this.state.applicant.dateGraduatedHighSchool)}
+                            onDateChange={(date) => {this.setState({applicant: {...this.state.applicant, dateGraduatedHighSchool: date.toString()}})}}
                         />
                     </Item>
                     <Item inlineLabel>
