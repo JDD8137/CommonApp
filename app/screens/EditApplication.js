@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import {
     View,
     Text,
-    ScrollView
+    ScrollView,
+    Alert
 } from "react-native";
 import {
     Container,
@@ -27,6 +28,7 @@ import {
 import ProgressBar from 'react-native-progress/Bar';
 import Applicant from "../models/Applicant";
 import Application from "../models/Application";
+import { Database } from "../models/Database";
 
 export default class EditApplication extends Component {
     constructor(props) {
@@ -35,7 +37,9 @@ export default class EditApplication extends Component {
         this.state = {
             applicant: {},
             application: {},
-            page: 1
+            page: 1,
+            affirmationChecked: false,
+            signature: ""
         };
         this.state.applicant = new Applicant();
         this.state.application = new Application();
@@ -171,8 +175,8 @@ export default class EditApplication extends Component {
                             iosIcon={<Icon name="ios-arrow-down-outline" />}
                             style={{ width: undefined }}
                             placeholder="Choose Major"
-                            selectedValue={null}
-                            onValueChange={null}
+                            selectedValue={this.state.application.firstDegreeChoice}
+                            onValueChange={(value) => {this.setState({application: { ...this.state.application, firstDegreeChoice: value}})}}
                         >
                             <Picker.Item label="Wallet" value="key0" />
                             <Picker.Item label="ATM Card" value="key1" />
@@ -183,7 +187,9 @@ export default class EditApplication extends Component {
                     </Item>
                     <Item stackedLabel>
                         <Label>Explain your first choice</Label>
-                        <Textarea rowSpan={5} bordered placeholder="Explanation" width={300} style={{marginTop: 15, marginBottom: 15}}/>
+                        <Textarea rowSpan={5} bordered placeholder="Explanation" width={300} style={{marginTop: 15, marginBottom: 15}}
+                                  value={this.state.application.firstDegreeExplanation}
+                                  onChangeText={(value) => {this.setState({application: { ...this.state.application, firstDegreeExplanation: value}})}}/>
                     </Item>
                     <Item picker inlineLabel>
                         <Label>Second Choice Degree:</Label>
@@ -192,8 +198,8 @@ export default class EditApplication extends Component {
                             iosIcon={<Icon name="ios-arrow-down-outline" />}
                             style={{ width: undefined }}
                             placeholder="Choose Major"
-                            selectedValue={null}
-                            onValueChange={null}
+                            selectedValue={this.state.application.secondDegreeChoice}
+                            onValueChange={(value) => {this.setState({application: { ...this.state.application, secondDegreeChoice: value}})}}
                         >
                             <Picker.Item label="Wallet" value="key0" />
                             <Picker.Item label="ATM Card" value="key1" />
@@ -204,7 +210,9 @@ export default class EditApplication extends Component {
                     </Item>
                     <Item stackedLabel>
                         <Label>Explain your first choice</Label>
-                        <Textarea rowSpan={5} bordered placeholder="Explanation" width={300} style={{marginTop: 15, marginBottom: 15}}/>
+                        <Textarea rowSpan={5} bordered placeholder="Explanation" width={300} style={{marginTop: 15, marginBottom: 15}}
+                                  value={this.state.application.secondDegreeExplanation}
+                                  onChangeText={(value) => {this.setState({application: { ...this.state.application, secondDegreeExplanation: value}})}}/>
                     </Item>
                 </Form>
             )
@@ -213,11 +221,13 @@ export default class EditApplication extends Component {
                 <Form>
                     <Item inlineLabel>
                         <Label>Recommender Name:</Label>
-                        <Input placeholder="Name" style={{ textAlign: 'right' }}/>
+                        <Input placeholder="Name" style={{ textAlign: 'right' }} value={this.state.application.recommenderName} onChangeText={(value) => {this.setState({application: { ...this.state.application, recommenderName: value}})}}/>
                     </Item>
                     <Item stackedLabel>
                         <Label>Recommendation Letter:</Label>
-                        <Textarea rowSpan={5} bordered placeholder="Type or paste letter" width={300} style={{marginTop: 15, marginBottom: 15}}/>
+                        <Textarea rowSpan={5} bordered placeholder="Type or paste letter" width={300} style={{marginTop: 15, marginBottom: 15}}
+                                  value={this.state.application.recommendation}
+                                  onChangeText={(value) => {this.setState({application: { ...this.state.application, recommendation: value}})}}/>
                     </Item>
                 </Form>
             );
@@ -225,9 +235,10 @@ export default class EditApplication extends Component {
             return (
                 <View style={{flex: 1, flexDirection:"column", justifyContent: "space-between", alignItems: "center"}}>
                     <Text style={{fontSize: 20, textAlign: "center"}}>I affirm that all the information I have provided is true to the best of my knowledge.</Text>
-                    <CheckBox checked={false} style={{marginTop: 10}}/>
+                    <CheckBox checked={this.state.affirmationChecked} style={{marginTop: 10}} onPress={() => {this.setState({affirmationChecked: !this.state.affirmationChecked})}}/>
                     <Label style={{marginTop: 20}}>Signature (Full Legal Name):</Label>
-                    <Input bordered placeholder="Name" style={{borderWidth: 2, borderColor: 'lightgrey', borderRadius:15, width: 300, marginTop:5}}/>
+                    <Input bordered placeholder="Name" style={{borderWidth: 2, borderColor: 'lightgrey', borderRadius:15, width: 300, marginTop:5}} value={this.state.signature} onChangeText={(value) => {this.setState({signature: value})}}/>
+                    {this.renderButton(this.state.affirmationChecked, this.state.signature)}
                 </View>
             )
         }
@@ -275,5 +286,41 @@ export default class EditApplication extends Component {
                 </Footer>
             );
         }
+    }
+
+    renderButton(checked, signature) {
+        if (checked && signature != "") {
+            return (
+                <Button full style={{borderWidth: 2, borderColor: 'lightgrey', borderRadius:15, marginTop:5}} onPress={() => {this.confirmSubmission()}}>
+                    <Text>Submit</Text>
+                </Button>
+            )
+        } else {
+            return (
+                <Button full disabled style={{borderWidth: 2, borderColor: 'lightgrey', borderRadius:15, marginTop:5}}>
+                    <Text>Submit</Text>
+                </Button>
+            )
+        }
+    }
+
+    confirmSubmission() {
+        Alert.alert(
+            'Are you sure?',
+            'Are you sure you want to submit? The application cannot be edited once its submitted.',
+            [
+                {text: 'Submit', onPress: () => this.submitApplication()},
+                {text: 'Cancel', onPress: () => console.log('OK Pressed'), style: 'cancel'},
+            ],
+            { cancelable: false }
+        )
+    }
+
+    submitApplication() {
+        Database.createApplication(new Applicant(this.state.applicant), new Application(this.state.application)).then(() => {
+            Alert.alert("Successfully Submitted");
+        }).catch((e) => {
+            Alert.alert("Error submitting", e);
+        })
     }
 }
