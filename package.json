@@ -17,6 +17,7 @@
     "react-native-elements": "^0.19.1",
     "react-native-fbsdk": "^0.8.0",
     "react-native-firebase": "^5.0.0",
+    "react-native-google-signin": "^1.0.0-rc8",
     "react-native-progress": "^3.5.0",
     "react-navigation": "^2.13.0",
     "xcode": "^1.0.0"
