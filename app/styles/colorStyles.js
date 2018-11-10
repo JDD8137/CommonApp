@@ -6,7 +6,9 @@ export const colorPalette = {
     secondary: "#F5F5DC", // Beige
     fontColor: "#000000", // Black
     otherColor: "#0B4F6C", // Blue-Gray
-    primaryText: "#FFFFFF" // White
+    primaryText: "#FFFFFF", // White
+    switchEnabled: '#C70039',
+    switchDisabled:'#efeff3'
 };
 
 export const colorStyles = StyleSheet.create({

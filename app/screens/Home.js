@@ -23,6 +23,18 @@ export default class Home extends Component {
     }
   }
 
+  static navigationOptions = () => ({
+    headerStyle: {
+      backgroundColor: colorPalette.primary,
+      shadowRadius: 0,
+      borderBottomWidth: 0,
+    },
+    // headerLeft:
+    //   <HeaderBarItem to='InfoScreen' title='App info' />,
+    // headerRight:
+    //   <HeaderBarItem to='FeedbackScreen' title='Feedback' />
+  });
+
   render() {
     const { navigate } = this.props.navigation;
     return (
@@ -33,9 +45,9 @@ export default class Home extends Component {
                         {this.state.name}
                     </Text>
                 </View>
-                <View style={styles.IDContainer}>
+                {/* <View style={styles.IDContainer}>
                     <Text style={styles.userID}>ID: <Text style={styles.userID}>900555555</Text></Text>
-                </View>
+                </View> */}
             </View>
 
             <View style={styles.GridContainer}>

@@ -86,7 +86,7 @@ export default [
   },
   {
     name: "University de Maroua",
-    acronym: "",
+    acronym: "UM",
     location: "Maroua",
     country_ranking: 5,
     world_ranking: 9274,
@@ -167,7 +167,7 @@ export default [
   },
   {
     name: "University de Bamenda",
-    acronym: "",
+    acronym: "UDB",
     location: "Bamenda",
     country_ranking: 9,
     world_ranking: 11479,

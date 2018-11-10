@@ -1,23 +1,22 @@
 import React, { Component } from "react";
 import {
+	AppRegistry,
+	Button,
+  Icon,
   View,
-  Text,
+  Image,
   FlatList,
   ActivityIndicator,
-  SafeAreaView,
-  Button
+  SafeAreaView
 } from "react-native";
+
 import { List, ListItem, SearchBar } from "react-native-elements";
-import { styles } from '../styles/styles'
+import { styles } from '../styles/styles';
+import Panel from '../Components/Panel';
+import { colorStyles, colorPalette } from "../styles/colorStyles";
 import _ from "lodash";
+import ToggleSwitch from "toggle-switch-react-native"
 import { getUniversities, contains } from "../api/index";
-//import isPublic from "../api/global"
-//import isPrivate from "../api/global"
-
-
-
-
-
 
 export default class Search extends Component {
   constructor(props) {
@@ -25,12 +24,37 @@ export default class Search extends Component {
 
     this.state = {
       loading: false,
-      data: [],
+			data: [],
+			filters: [],
       error: null,
       query: "",
-      fullData: []
+			fullData: [],
+			clearAll: false,
+			isPub: false,
+			isPriv: false,
+			isProf: false,
+			isNonProf: false,
+			hasSport: false,
+      expanded: false,
+      groupSize: 3
     };
   }
+
+  static navigationOptions = () => ({
+    headerStyle: {
+      backgroundColor: colorPalette.primary,
+      shadowRadius: 0,
+      borderBottomWidth: 0,
+    },
+    headerTintColor: '#FFFFFF',
+    headerTitleStyle: {
+      color: '#FFFFFF',
+    },
+    // headerLeft:
+    //   <HeaderBarItem to='InfoScreen' title='App info' />,
+    // headerRight:
+    //   <HeaderBarItem to='FeedbackScreen' title='Feedback' />
+  });
 
   componentDidMount() {
     this.makeRemoteRequest();
@@ -61,21 +85,19 @@ export default class Search extends Component {
     this.setState({ data, query: text }, () => this.makeRemoteRequest());
   };
 
-
-
   renderSeparator = () => {
     return (
       <View
         style={{
           height: 1,
-          width: "86%",
+          width: "90%",
           backgroundColor: "#CED0CE",
-          marginLeft: "14%"
+          marginLeft: "5%"
         }}
 
       />
     );
-  };
+	};
 
   getPublic() {
   return this.props.navigation.getParam('isPublic', false);
@@ -103,8 +125,6 @@ export default class Search extends Component {
 
   renderHeader = () => {
   const { navigate } = this.props.navigation;
-  const isP = this.getPublic();
-  const isPr = this.getPrivate();
 
     return (
     <View style={styles.GridColumnContainer}>
@@ -114,15 +134,89 @@ export default class Search extends Component {
         round
         onChangeText={this.handleSearch}
       />
-      <Button
-        onPress={() => {navigate('Filter')}}
-        title="Filter"
-        color="#841584"
-        accessibilityLabel="Filter Universities"
-      />
-      </View>
-    );
-  };
+      <Panel title="Filters">
+				<Button
+					title="Clear all"
+					color='red'
+					onPress={() => {
+						this.setState({
+							isPub: false,
+							isPriv: false,
+							isProf: false,
+							isNonProf: false,
+							hasSport: false,
+						});
+						// handle search
+						this.handleSearch;
+					}}
+        />
+
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.isPub}
+					isOff={!this.state.isPub}
+					label='Public '
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+						this.setState({isPub: isOn})
+						this.state.data = this.state.data.filter(item => item.is_public == isOn, this.handleSearch);
+					}}
+					onToggle={(isOff) => {
+						this.setState({isPub: isOff})
+						this.state.data = this.state.fullData;
+
+					}}
+				/>
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.isPriv}
+					label='Private'
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+						this.setState({isPriv: isOn});
+						this.state.data = this.state.data.filter(item => item.is_public == isOn, this.handleSearch);
+					}}
+				/>
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.isProf}
+					label='Profit        '
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+							this.setState({isProf: isOn});
+							this.state.data = this.state.data.filter(item => item.is_non_profit == isOn, this.handleSearch);
+					}}
+					// isOn={this.state.isProf}
+				/>
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.isNonProf}
+					label='Non-Profit'
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+							this.setState({isNonProf: isOn});
+							this.state.data = this.state.data.filter(item => item.is_non_profit == isOn, this.handleSearch);
+					}}
+				/>
+				<ToggleSwitch
+					style={styles.searchFilterItem}
+					isOn={this.state.hasSport}
+					label='Sports Facility'
+					size='medium'
+					onColor='green'
+					onToggle={(isOn) => {
+							this.setState({hasSport: isOn});
+							this.state.data = this.state.data.filter(item => item.has_sports_facility == isOn, this.handleSearch);
+					}}
+				/>
+			</Panel>
+		</View>
+		);
+	};
 
   renderFooter = () => {
     if (!this.state.loading) return null;
@@ -137,50 +231,57 @@ export default class Search extends Component {
       >
         <ActivityIndicator animating size="large" />
       </View>
-
     );
   };
 
 
   render() {
-  const isP = this.getPublic();
-  const isPrivate = this.getPrivate();
-  const isProfit = this.getProfit();
-  const isNon = this.getNonProfit();
-  const hasSport = this.getSports();
-  const hasNoSport = this.getNoSports();
-  if(isP) {
-    this.state.data = this.state.data.filter(item => item.is_public == true);
-  }
-  if(isPrivate) {
-    this.state.data = this.state.data.filter(item => item.is_public == false);
-  }
-  if(isProfit) {
-    this.state.data = this.state.data.filter(item => item.is_non_profit == false);
-  }
-  if(isNon) {
-    this.state.data = this.state.data.filter(item => item.is_non_profit == true);
-  }
-  if(hasSport) {
-      this.state.data = this.state.data.filter(item => item.has_sports_facility == true);
-  }
-  if(hasNoSport) {
-        this.state.data = this.state.data.filter(item => item.has_sports_facility == false);
-  }
+    const isP = this.getPublic();
+    const isPrivate = this.getPrivate();
+    const isProfit = this.getProfit();
+    const isNon = this.getNonProfit();
+    const hasSport = this.getSports();
+    const hasNoSport = this.getNoSports();
+    if(isP) {
+      this.state.data = this.state.data.filter(item => item.is_public == true);
+    }
+    if(isPrivate) {
+      this.state.data = this.state.data.filter(item => item.is_public == false);
+    }
+    if(isProfit) {
+      this.state.data = this.state.data.filter(item => item.is_non_profit == false);
+    }
+    if(isNon) {
+      this.state.data = this.state.data.filter(item => item.is_non_profit == true);
+    }
+    if(hasSport) {
+        this.state.data = this.state.data.filter(item => item.has_sports_facility == true);
+    }
+    if(hasNoSport) {
+          this.state.data = this.state.data.filter(item => item.has_sports_facility == false);
+    }
     return (
-
-
       <SafeAreaView>
         <List containerStyle={{ borderTopWidth: 0, borderBottomWidth: 0 }}>
           <FlatList
             data={this.state.data}
             renderItem={({ item }) => (
               <ListItem
-                roundAvatar
+                // roundAvatar
                 title={`${item.name}`}
-                subtitle={`${item.acronym} ${item.location}`}
-                // avatar={{ uri: item.picture.thumbnail }}
-                containerStyle={{ borderBottomWidth: 0 }}
+                subtitle={`${item.acronym} - ${item.location}`}
+								containerStyle={{ borderBottomWidth: 0 }}
+								// leftIcon={name='check'}
+								onPress={() => {
+									<Panel title={'${item.name}'}>
+										<div>
+											Hello
+										</div>
+									</Panel>
+								}}
+								// leftIconOnPress={() => {
+								// 	// make icon green checkmark and add to array of selected universities
+								// }}
               />
             )}
             keyExtractor={item => item.name}

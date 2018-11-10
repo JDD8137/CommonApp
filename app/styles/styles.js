@@ -1,5 +1,5 @@
 import { StyleSheet,Dimensions } from 'react-native';
-// import { colorStyles, colorPalette } from "colorStyles"
+
 
 export const styles = StyleSheet.create({
 	loginForeground: {
@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
 		color:"#FBBC05"
 	},
 	TitleContainer: {
-		flex: 2,
+		flex: 1,
 		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
@@ -36,16 +36,12 @@ export const styles = StyleSheet.create({
 		fontWeight: '600',
 		fontSize: 18
 	},
-	TitleName2: {
-        color: '#000000',
-        fontWeight: '600',
-        fontSize: 18
-    },
     FilterLabel: {
          color: '#000000',
          fontWeight: '600',
-         fontSize: 16
-    },
+		 fontSize: 18,
+		 paddingTop: 2
+	},
 	IDContainer: {
 		paddingTop: 4
 
@@ -54,7 +50,7 @@ export const styles = StyleSheet.create({
 		color: '#FFFFFF'
 	},
 	GridContainer: {
-		flex: 5,
+		flex: 4,
 		flexDirection: 'column',
 		alignItems: 'center',
 	},
@@ -90,5 +86,57 @@ export const styles = StyleSheet.create({
 	ProfileIcon: {
 		fontSize: 112,
 		paddingBottom: 10
+	},
+	PanelContainer   : {
+        backgroundColor: '#fff',
+        margin:10,
+        overflow:'hidden'
+    },
+    PanelTitleContainer : {
+		flexDirection: 'row',
+		alignItems: 'center',
+		justifyContent: 'center'
+    },
+    PanelTitle       : {
+        padding : 4,
+		color   :'#2a2f43',
+		fontSize: 18,
+		fontWeight:'bold',
+		textAlign: 'center'
+    },
+    PanelButton      : {
+
+    },
+    PanelButtonImage : {
+        width   : 25,
+        height  : 25
+    },
+    PanelBody       : {
+        padding     : 0,
+		paddingTop  : 0,
+		flexDirection: 'row',
+		flex: 1
+	},
+	PanelRowTop: {
+		flex: 3,
+		flexDirection: 'row',
+		justifyContent: 'space-around',
+		alignItems: 'stretch'
+	},
+	PanelRowBottom: {
+		flex: 1,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center'
+	},
+	PanelColumn: {
+		flex: 1,
+		flexDirection: 'column',
+		padding: 4
+		// justifyContent: 'space-between',
+	},
+	searchFilterItem: {
+		flex: 1,
+		padding: 8,
 	}
 });

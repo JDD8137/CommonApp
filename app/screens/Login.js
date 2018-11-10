@@ -140,11 +140,17 @@ export default class Login extends Component {
               </TouchableOpacity>
 
           </View>
+<<<<<<< HEAD
 
 
           </View>
         </Content>
       </Container>
+=======
+        </View>
+      </Content>
+    </Container>
+>>>>>>> afe695e23d9cbbfc92baec7d4596c8ac33576c49
     );
   }
 }
