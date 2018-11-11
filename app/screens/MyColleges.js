@@ -15,10 +15,41 @@ import {
   View,
 } from 'native-base'
 
+import { getUniversities, contains } from "../api/index";
+import { Database } from "../models/Database"
 
 export default class Status extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+        application: {}
+    }
+    Database.loadApplication().then((result) => {
+        console.log("loaded");
+        if (result[1] != null) {
+            console.log("not null");
+
+            var application = result[1];
+            getUniversities(15, "")
+                .then(universities => {
+                    var universityName = "";
+                    universities.forEach((uni) => {
+                        if (uni.id == application.universityId) {
+                            universityName = uni.name
+                        }
+                    });
+                    console.log(universityName);
+                    console.log(application.admissionsDecision);
+                    this.setState({
+                        universityName: universityName,
+                        admissionsDecision: application.admissionsDecision
+                    });
+                })
+                .catch(error => {
+                });
+        }
+    })
   }
 
   static navigationOptions = () => ({
@@ -47,7 +78,14 @@ export default class Status extends Component {
                 STATUS
             </Text>
         </View>
-        
+          <View style={{...styles.StatusHeaderContainer, backgroundColor: ""}}>
+              <Text style={styles.StatusHeader}>
+                  {this.state.universityName}
+              </Text>
+              <Text style={styles.StatusHeader}>
+                  {this.state.admissionsDecision}
+              </Text>
+          </View>
       </Container>
     );
   }

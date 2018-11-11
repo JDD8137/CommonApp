@@ -285,6 +285,7 @@ export default class Search extends Component {
                                             {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                                             {text: 'Apply', onPress: () => {
                                                 Database.applyTo(item.id);
+                                                Alert.alert(`Successfully applied to ${item.name}`)
                                                 }},
                                         ],
                                         { cancelable: false }
