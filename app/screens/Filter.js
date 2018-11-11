@@ -2,26 +2,14 @@ import React, { Component } from "react";
 import {
   View,
   Text,
-  FlatList,
-  ActivityIndicator,
-  SafeAreaView,
   Button
 } from "react-native";
 import {
   Container,
-  Content,
-  Footer,
-  Input,
-  Icon,
-  Spinner,
 } from 'native-base'
-import { List, ListItem, SearchBar } from "react-native-elements";
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 import _ from "lodash";
-import { getUniversities, contains } from "../api/index";
-//import isPublic from "../api/global"
-//import isPrivate from "../api/global"
 
 export default class Search extends Component {
   constructor(props) {
@@ -36,25 +24,42 @@ export default class Search extends Component {
     };
   }
 
+  static navigationOptions = () => ({
+    // title: 'Filter Universities',
+    headerStyle: {
+      backgroundColor: colorPalette.primary,
+      shadowRadius: 0,
+      borderBottomWidth: 0,
+    },
+    headerTintColor: '#FFFFFF',
+    headerTitleStyle: {
+      color: '#FFFFFF',
+    },
+    // headerLeft:
+    //   <HeaderBarItem to='InfoScreen' title='App info' />,
+    // headerRight:
+    //   <HeaderBarItem to='FeedbackScreen' title='Feedback' />
+  });
+
   render() {
     const { navigate } = this.props.navigation;
     return (
-    <Container style={colorStyles.primary2}>
-                <View style={styles.TitleContainer}>
+    <Container style={colorStyles.primary}>
+                {/* <View style={styles.TitleContainer}>
                     <View style={styles.TitleHeader}>
-                        <Text style={styles.TitleName2}>
+                        <Text style={styles.TitleName}>
                             Filter Universities
                         </Text>
                     </View>
 
-                </View>
+                </View> */}
 
                 <View style={styles.GridContainer}>
                    <View style={styles.gridColumnContainer}>
                    <Button
                        onPress={() => {navigate('Search')}}
                        title="All Universities"
-                       color="#841584"
+                       color="#FFFFFF"
                        accessibilityLabel="No Filter"
                    />
                       <Text style={styles.FilterLabel}>
@@ -64,14 +69,14 @@ export default class Search extends Component {
                       <Button
                         onPress={() => {navigate('Search', {isPublic : true})}}
                         title="Public"
-                        color="#841584"
+                        color="#FFFFFF"
                         accessibilityLabel="Filter Public"
                       />
 
                       <Button
                         onPress={() => {navigate('Search', {isPrivate : true})}}
                         title="Private"
-                        color="#841584"
+                        color="#FFFFFF"
                         accessibilityLabel="Filter Private"
                       />
 
@@ -82,13 +87,13 @@ export default class Search extends Component {
                         <Button
                         onPress={() => {navigate('Search', {isProfit : true})}}
                         title="Profit"
-                        color="#841584"
+                        color="#FFFFFF"
                         accessibilityLabel="Filter Profit"
                         />
                         <Button
                         onPress={() => {navigate('Search',  {isNonProfit : true})}}
                         title="Non-Profit"
-                        color="#841584"
+                        color="#FFFFFF"
                         accessibilityLabel="Filter Non-Profit"
                         />
 
@@ -99,13 +104,13 @@ export default class Search extends Component {
                         <Button
                         onPress={() => {navigate('Search', {hasSports : true})}}
                         title="Yes"
-                        color="#841584"
+                        color="#FFFFFF"
                         accessibilityLabel="Filter Library"
                         />
                         <Button
                         onPress={() => {navigate('Search',  {hasNoSports : true})}}
                         title="No"
-                        color="#841584"
+                        color="#FFFFFF"
                         accessibilityLabel="Filter No-Library"
                         />
 

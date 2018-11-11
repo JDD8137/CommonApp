@@ -69,7 +69,7 @@ export default class Signup extends Component {
           Alert.alert("Unable to create account.");
         });
     }
-    
+
 
   }
 
@@ -131,7 +131,7 @@ export default class Signup extends Component {
           <Button block style={{marginTop:10}} onPress={() => {this.register()}}>
             <Text> Sign up </Text>
           </Button>
-          
+
 
           </View>
         </Content>

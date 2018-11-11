@@ -1,4 +1,5 @@
 import firebase from 'react-native-firebase';
+import { GoogleSignin } from 'react-native-google-signin';
 
 const FBSDK = require('react-native-fbsdk');
 const {
@@ -68,6 +69,32 @@ export class Authenticator {
             },
           );
         })
+    }
+
+    static loginWithGoogle() {
+      return new Promise((resolve, reject) => {
+        GoogleSignin.configure();
+          GoogleSignin.signIn()
+          .then((data) => {
+              const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
+              firebase.auth().signInWithCredential(credential)
+                .then(() => {
+                  resolve();
+                })
+                .catch((error) => {
+                  console.log(error);
+                  reject();
+                });
+            }
+          )
+          .catch((error) => {
+            console.log(error);
+            reject();
+          });
+      //   .catch((error) => {
+      //     reject();
+      //   })
+      });
     }
 
     static userIsLoggedIn(result) {

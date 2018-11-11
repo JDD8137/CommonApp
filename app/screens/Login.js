@@ -68,8 +68,19 @@ export default class Login extends Component {
         this.props.navigation.navigate("Home");
       })
       .catch(() => {
-        Alert.alert("Unable to login with facebook.");
+        Alert.alert("Unable to login with Facebook.");
       });
+  }
+
+  loginWithGoogle() {
+    Authenticator.loginWithGoogle()
+      .then(() => {
+        this.props.navigation.navigate("Home");
+      })
+      .catch((error) => {
+        console.log(error);
+        Alert.alert("Unable to login with Google.");
+      })
   }
 
   render() {
@@ -124,7 +135,7 @@ export default class Login extends Component {
               </Text>
               </TouchableOpacity>
           </View>
-          
+
           {/* TODO: GOOGLE AUTH */}
           <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
               {/* <Icon type="FontAwesome" name="google" size={12} /> */}
@@ -133,13 +144,11 @@ export default class Login extends Component {
                 Continue with Google
               </Text>
               </TouchableOpacity>
-              
-          </View>
-          
 
           </View>
-        </Content>
-      </Container>
+        </View>
+      </Content>
+    </Container>
     );
   }
 }
