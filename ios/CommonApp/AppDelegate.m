@@ -12,6 +12,7 @@
 
 #import <Firebase.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <RNGoogleSignIn/RNGoogleSignIn.h>
 
 @implementation AppDelegate
 
@@ -52,6 +53,11 @@
   return [[FBSDKApplicationDelegate sharedInstance] application:application
                                                         openURL:url
                                               sourceApplication:sourceApplication
-                                                     annotation:annotation];
+                                                     annotation:annotation]
+          || [RNGoogleSignin application:application
+                                 openURL:url
+                       sourceApplication:sourceApplication
+                              annotation:annotation
+              ];
 }
 @end

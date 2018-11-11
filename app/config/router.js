@@ -19,6 +19,7 @@ import MyColleges from '../screens/MyColleges'
 import EditProfile from '../screens/EditProfile'
 import Notifications from '../screens/EditProfile'
 import PaymentOptions from '../screens/PaymentOptions'
+import { Authenticator } from '../models/Authenticator'
 
 export const HomeStack = StackNavigator({
   Home: {
@@ -51,11 +52,13 @@ export const BottomNav = TabNavigator({
     navigationOptions: {
       headerLeft: null,
       headerTitle: "Logout",
+      logout: true,
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon
           name={focused ? "exit" : "exit"}
           size={25}
-          style={{color: tintColor}}/>
+          style={{color: tintColor}}
+          onPress={() => {Authenticator.logout()}}/>
       ),
     }
   },

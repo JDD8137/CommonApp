@@ -19,6 +19,7 @@ target 'CommonApp' do
   pod 'Firebase/Auth', '~> 5.9.0'
   pod 'Firebase/Database', '~> 5.9.0'
   pod 'GoogleAppMeasurement', '~> 5.2.0'
+  pod 'GoogleSignIn'
 end
 
 target 'CommonApp-tvOS' do

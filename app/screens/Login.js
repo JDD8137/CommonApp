@@ -34,11 +34,16 @@ export default class Login extends Component {
       password: '',
     }
 
-    Authenticator.userIsLoggedIn((result) => {
-      if (result) {
-          this.props.navigation.navigate("Home");
-      }
-    });
+   // if (this.navigationOptions.logout) {
+   //   Authenticator.logout();
+   // } else {
+        Authenticator.userIsLoggedIn((result) => {
+            if (result) {
+                this.props.navigation.navigate("Home");
+            }
+        });
+   // }
+
   }
 
   updateEmail(email) {

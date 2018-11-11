@@ -58,6 +58,11 @@
 		BBC522B01F8641EAB8C12D6C /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92927C64DCDD45CBAAB46F40 /* FBSDKLoginKit.framework */; };
 		BFD3078597C5472E91F4FA42 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36A07C03E6994231AA7794DF /* Ionicons.ttf */; };
 		DE18E85E2161283C004A87DE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DE18E85D2161283C004A87DE /* GoogleService-Info.plist */; };
+		DEA3C3D62198DACE008046FF /* libRNGoogleSignin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA3C3D52198DAB4008046FF /* libRNGoogleSignin.a */; };
+		DEA3C3D82198DBB6008046FF /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA3C3D72198DBB6008046FF /* AddressBook.framework */; };
+		DEA3C3DA2198DBBF008046FF /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA3C3D92198DBBF008046FF /* SafariServices.framework */; };
+		DEA3C3DC2198DBC7008046FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA3C3DB2198DBC7008046FF /* SystemConfiguration.framework */; };
+		DEA3C3DE2198DBCF008046FF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DEA3C3DD2198DBCF008046FF /* libz.tbd */; };
 		DEEC257F2161526C00A58C5D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEEC25582161526C00A58C5D /* Bolts.framework */; };
 		DEEC25832161527E00A58C5D /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEEC25802161527E00A58C5D /* FBSDKLoginKit.framework */; };
 		DEEC25842161527E00A58C5D /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEEC25812161527E00A58C5D /* FBSDKShareKit.framework */; };
@@ -363,6 +368,13 @@
 			remoteGlobalIDString = 323A12871E5F266B004975B8;
 			remoteInfo = "ART-tvOS";
 		};
+		DEA3C3D42198DAB4008046FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DEA3C3A72198DAB4008046FF /* RNGoogleSignin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9FD355121D3E4A2900D06170;
+			remoteInfo = RNGoogleSignin;
+		};
 		DEEC25BD2161567D00A58C5D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DEEC25B92161567C00A58C5D /* RCTFBSDK.xcodeproj */;
@@ -430,6 +442,11 @@
 		D1D7A14966F8D2245EAE143B /* Pods-CommonAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommonAppTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CommonAppTests/Pods-CommonAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		DE18E85D2161283C004A87DE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "CommonApp/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DE41739F218F3C6D0070C31F /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
+		DEA3C3A72198DAB4008046FF /* RNGoogleSignin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNGoogleSignin.xcodeproj; path = "../node_modules/react-native-google-signin/ios/RNGoogleSignin.xcodeproj"; sourceTree = "<group>"; };
+		DEA3C3D72198DBB6008046FF /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		DEA3C3D92198DBBF008046FF /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		DEA3C3DB2198DBC7008046FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		DEA3C3DD2198DBCF008046FF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		DEEC25582161526C00A58C5D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		DEEC25802161527E00A58C5D /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		DEEC25812161527E00A58C5D /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -453,6 +470,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DEA3C3DE2198DBCF008046FF /* libz.tbd in Frameworks */,
+				DEA3C3DC2198DBC7008046FF /* SystemConfiguration.framework in Frameworks */,
+				DEA3C3DA2198DBBF008046FF /* SafariServices.framework in Frameworks */,
+				DEA3C3D82198DBB6008046FF /* AddressBook.framework in Frameworks */,
+				DEA3C3D62198DACE008046FF /* libRNGoogleSignin.a in Frameworks */,
 				DEEC25BF2161569B00A58C5D /* libRCTFBSDK.a in Frameworks */,
 				DEEC25832161527E00A58C5D /* FBSDKLoginKit.framework in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -627,6 +649,10 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DEA3C3DD2198DBCF008046FF /* libz.tbd */,
+				DEA3C3DB2198DBC7008046FF /* SystemConfiguration.framework */,
+				DEA3C3D92198DBBF008046FF /* SafariServices.framework */,
+				DEA3C3D72198DBB6008046FF /* AddressBook.framework */,
 				DE41739F218F3C6D0070C31F /* ART.xcodeproj */,
 				DEEC25B92161567C00A58C5D /* RCTFBSDK.xcodeproj */,
 				DEEC25822161527E00A58C5D /* FBSDKCoreKit.framework */,
@@ -702,6 +728,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				DEA3C3A72198DAB4008046FF /* RNGoogleSignin.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -790,6 +817,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		DEA3C3A82198DAB4008046FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DEA3C3D52198DAB4008046FF /* libRNGoogleSignin.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		DEEC25BA2161567C00A58C5D /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -829,6 +864,7 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				4D6A40CB48F24E280ED120CD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -972,6 +1008,10 @@
 				{
 					ProductGroup = DE18E858216127A7004A87DE /* Products */;
 					ProjectRef = 6C1F753DDA484703AE8ADCF9 /* RNFirebase.xcodeproj */;
+				},
+				{
+					ProductGroup = DEA3C3A82198DAB4008046FF /* Products */;
+					ProjectRef = DEA3C3A72198DAB4008046FF /* RNGoogleSignin.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1265,6 +1305,13 @@
 			remoteRef = DE4173A6218F3C6E0070C31F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		DEA3C3D52198DAB4008046FF /* libRNGoogleSignin.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNGoogleSignin.a;
+			remoteRef = DEA3C3D42198DAB4008046FF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		DEEC25BE2161567D00A58C5D /* libRCTFBSDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1386,6 +1433,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D6A40CB48F24E280ED120CD /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CommonApp/Pods-CommonApp-resources.sh",
+				"${PODS_ROOT}/GTMOAuth2/Source/Touch/GTMOAuth2ViewTouch.xib",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GTMOAuth2ViewTouch.nib",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CommonApp/Pods-CommonApp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A63F42FA6472B2A0BF228E2F /* [CP] Check Pods Manifest.lock */ = {
