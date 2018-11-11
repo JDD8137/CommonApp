@@ -7,6 +7,7 @@ import co.apptailor.googlesignin.RNGoogleSigninPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.database.RNFirebaseDatabasePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -40,9 +41,10 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new RNGoogleSigninPackage(),
             new RNFirebasePackage(),
-            //new RNFirebaseAuthPackage(),
-//            new FBSDKPackage(),
-              new RNFirebaseAuthPackage(),
+            //new FBSDKPackage(),
+            new RNFirebaseAuthPackage(),
+            new RNFirebasePackage(),
+            new RNFirebaseDatabasePackage(),
             new FBSDKPackage(mCallbackManager)
       );
     }
