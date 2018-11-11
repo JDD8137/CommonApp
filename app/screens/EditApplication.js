@@ -43,12 +43,22 @@ export default class EditApplication extends Component {
         };
         this.state.applicant = new Applicant();
         this.state.application = new Application();
+        Database.loadApplication().then((result) => {
+            this.setState({
+                applicant: result[0],
+                application: result[1]
+            })
+        })
     }
 
     renderHeader() {
         return(
             <Header>
-                <Left />
+                <Left>
+                    <Button transparent onPress={ () => {this.props.navigation.goBack()}} >
+                        <Text>Close</Text>
+                    </Button>
+                </Left>
                 <Body>
                 <Text>Edit Application</Text>
                 </Body>
@@ -64,7 +74,7 @@ export default class EditApplication extends Component {
                 {this.renderHeader()}
                 <Content>
                     <View style={{flex: 0, justifyContent: 'center', alignItems: 'center', padding: 10}}>
-                        <ProgressBar progress={this.state.page / 6} width={200}/>
+                        <ProgressBar progress={this.state.page / 7} width={200}/>
                     </View>
                     <ScrollView style={{padding: 10}}>
                         {this.renderPage(this.state.page)}
@@ -77,6 +87,14 @@ export default class EditApplication extends Component {
 
     renderPage(number) {
         if (number == 1) {
+            return (
+                <View style={{flex: 1, flexDirection:"column", justifyContent: "space-between", alignItems: "center"}}>
+                    <Text style={{fontSize: 20, textAlign: "center", margin:20}}>Welcome to your Common Application!</Text>
+                    <Text style={{fontSize: 14, textAlign: "center", margin:20}}>This application will be sent to all universities that you choose to apply to. Click next to begin.</Text>
+
+                </View>
+            );
+        } else if (number == 2) {
             return (
                 <Form>
                     <Item inlineLabel>
@@ -118,7 +136,7 @@ export default class EditApplication extends Component {
                     </Item>
                 </Form>
             )
-        } else if (number == 2) {
+        } else if (number == 3) {
             return (
                 <Form>
                     <Item inlineLabel>
@@ -161,7 +179,7 @@ export default class EditApplication extends Component {
                     </Item>
                 </Form>
             )
-        } else if (number == 3) {
+        } else if (number == 4) {
             return (
                 <Form>
                     <Item inlineLabel>
@@ -176,7 +194,7 @@ export default class EditApplication extends Component {
                     </Item>
                 </Form>
             )
-        } else if (number == 4) {
+        } else if (number == 5) {
             return (
                 <Form>
                     <Item picker inlineLabel>
@@ -189,11 +207,11 @@ export default class EditApplication extends Component {
                             selectedValue={this.state.application.firstDegreeChoice}
                             onValueChange={(value) => {this.setState({application: { ...this.state.application, firstDegreeChoice: value}})}}
                         >
-                            <Picker.Item label="Wallet" value="key0" />
-                            <Picker.Item label="ATM Card" value="key1" />
-                            <Picker.Item label="Debit Card" value="key2" />
-                            <Picker.Item label="Credit Card" value="key3" />
-                            <Picker.Item label="Net Banking" value="key4" />
+                            <Picker.Item label="Arts and Humanaties" value="Arts and Humanaties" />
+                            <Picker.Item label="Business and Social Sciences" value="Business and Social Sciences" />
+                            <Picker.Item label="Medicine and Health" value="Medicine and Health" />
+                            <Picker.Item label="Engineering" value="Engineering" />
+                            <Picker.Item label="Science and Technology" value="Science and Technology" />
                         </Picker>
                     </Item>
                     <Item stackedLabel>
@@ -212,11 +230,11 @@ export default class EditApplication extends Component {
                             selectedValue={this.state.application.secondDegreeChoice}
                             onValueChange={(value) => {this.setState({application: { ...this.state.application, secondDegreeChoice: value}})}}
                         >
-                            <Picker.Item label="Wallet" value="key0" />
-                            <Picker.Item label="ATM Card" value="key1" />
-                            <Picker.Item label="Debit Card" value="key2" />
-                            <Picker.Item label="Credit Card" value="key3" />
-                            <Picker.Item label="Net Banking" value="key4" />
+                            <Picker.Item label="Arts and Humanaties" value="Arts and Humanaties" />
+                            <Picker.Item label="Business and Social Sciences" value="Business and Social Sciences" />
+                            <Picker.Item label="Medicine and Health" value="Medicine and Health" />
+                            <Picker.Item label="Engineering" value="Engineering" />
+                            <Picker.Item label="Science and Technology" value="Science and Technology" />
                         </Picker>
                     </Item>
                     <Item stackedLabel>
@@ -227,7 +245,7 @@ export default class EditApplication extends Component {
                     </Item>
                 </Form>
             )
-        } else if (number == 5) {
+        } else if (number == 6) {
             return (
                 <Form>
                     <Item inlineLabel>
@@ -242,7 +260,7 @@ export default class EditApplication extends Component {
                     </Item>
                 </Form>
             );
-        } else if (number == 6) {
+        } else if (number == 7) {
             return (
                 <View style={{flex: 1, flexDirection:"column", justifyContent: "space-between", alignItems: "center"}}>
                     <Text style={{fontSize: 20, textAlign: "center"}}>I affirm that all the information I have provided is true to the best of my knowledge.</Text>
@@ -256,7 +274,7 @@ export default class EditApplication extends Component {
     }
 
     renderFooter(number) {
-        if (number > 1 && number < 6) {
+        if (number > 1 && number < 7) {
             return (
                 <Footer>
                     <Left>
@@ -302,36 +320,25 @@ export default class EditApplication extends Component {
     renderButton(checked, signature) {
         if (checked && signature != "") {
             return (
-                <Button full style={{borderWidth: 2, borderColor: 'lightgrey', borderRadius:15, marginTop:5}} onPress={() => {this.confirmSubmission()}}>
-                    <Text>Submit</Text>
+                <Button full style={{borderWidth: 2, borderColor: 'lightgrey', borderRadius:15, marginTop:5}} onPress={() => {this.submitApplication()}}>
+                    <Text>Save</Text>
                 </Button>
             )
         } else {
             return (
                 <Button full disabled style={{borderWidth: 2, borderColor: 'lightgrey', borderRadius:15, marginTop:5}}>
-                    <Text>Submit</Text>
+                    <Text>Save</Text>
                 </Button>
             )
         }
     }
 
-    confirmSubmission() {
-        Alert.alert(
-            'Are you sure?',
-            'Are you sure you want to submit? The application cannot be edited once its submitted.',
-            [
-                {text: 'Submit', onPress: () => this.submitApplication()},
-                {text: 'Cancel', onPress: () => console.log('OK Pressed'), style: 'cancel'},
-            ],
-            { cancelable: false }
-        )
-    }
-
     submitApplication() {
         Database.createApplication(new Applicant(this.state.applicant), new Application(this.state.application)).then(() => {
-            Alert.alert("Successfully Submitted");
+            Alert.alert("Successfully Saved");
+            this.props.navigation.goBack()
         }).catch((e) => {
-            Alert.alert("Error submitting", e);
+            Alert.alert("Error Saving Application", e);
         })
     }
 }

@@ -1,6 +1,9 @@
 import firebase from 'react-native-firebase';
 
 
+import Applicant from "./Applicant";
+import Application from "./Application";
+
 export class Database {
     static getUserId() {
         return firebase.auth().currentUser.uid;
@@ -20,6 +23,7 @@ export class Database {
             const database = firebase.database();
             const applicantRef = database.ref("applicants/" + userId);
             applicantRef.set(applicant);
+            application.submittedDate = (new Date()).toString();
 
             const applicationRef = database.ref("applications/");
             const key = applicationRef.push().key;
@@ -30,5 +34,29 @@ export class Database {
             resolve();
         });
 
+    }
+
+    static loadApplication() {
+        return new Promise((resolve, reject) => {
+            var userId = Database.getUserId();
+            const database = firebase.database();
+            const applicantRef = database.ref("applicants/" + userId);
+            applicantRef.once("value").then((applicantSnapshot) => {
+                if (applicantSnapshot.exists()) {
+                    var applicant = new Applicant(applicantSnapshot.val());
+                    applicant.id = applicantSnapshot.key;
+                    const applicationRef= database.ref("applications");
+                    applicationRef.orderByChild(applicant.id).once("value").then((applicationSnapshot) => {
+                        var val = applicationSnapshot.val();
+                        var application = new Application(val[Object.keys(val)[0]]);
+                        application.id = Object.keys(val)[0];
+                        resolve([applicant, application]);
+                    });
+                }
+                else {
+                    resolve(null, null);
+                }
+            })
+        })
     }
 }

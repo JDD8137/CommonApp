@@ -4,7 +4,6 @@ export default class Application {
             this.id = "";
             this.applicantId = "";
             this.universityId = "";
-            this.degreeChoicesInOrder = ["",""];
             this.submittedDate = "";
             this.admissionsDecision = "";
         } else {

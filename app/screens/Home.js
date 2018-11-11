@@ -42,7 +42,7 @@ export default class Home extends Component {
                 <View style={styles.GridColumnContainer}>
                     <View style={styles.GridRowContainer}>
                         <View style={styles.GridComponent}>
-                            <Icon type="Ionicons" name="md-paper" style={[colorStyles.primaryText, styles.HomeIcon]} onPress={() => {navigate('Applications', {isPublic: false})}}></Icon>
+                            <Icon type="Ionicons" name="md-paper" style={[colorStyles.primaryText, styles.HomeIcon]} onPress={() => {navigate('EditApplication', {isPublic: false})}}></Icon>
                             <Text style={styles.GridTitleText}>Applications</Text>
                         </View>
                         <View style={styles.gridComponent}>
