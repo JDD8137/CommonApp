@@ -13,19 +13,36 @@ import Login from '../screens/Login';
 import Signup from '../screens/Signup';
 import Home from '../screens/Home';
 import Search from '../screens/Search';
-import Filter from '../screens/Filter';
 import Settings from '../screens/Settings';
+import Profile from '../screens/Profile';
+import MyColleges from '../screens/MyColleges'
+import EditProfile from '../screens/EditProfile'
+import Notifications from '../screens/EditProfile'
+import PaymentOptions from '../screens/PaymentOptions'
 
 export const HomeStack = StackNavigator({
   Home: {
     screen: Home
   },
-  Filter: {
-    screen: Filter
-  },
   Search: {
     screen: Search
   },
+  MyColleges: {
+    screen: MyColleges
+  },
+  Profile: {
+    screen: Profile
+  },
+  EditProfile: {
+    screen: EditProfile
+  },
+  Notifications: {
+    screen: Notifications
+  },
+  PaymentOptions: {
+    screen: PaymentOptions
+  },
+  
 })
 
 export const BottomNav = TabNavigator({

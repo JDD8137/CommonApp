@@ -124,7 +124,7 @@ export default class Search extends Component {
 
 
   renderHeader = () => {
-  const { navigate } = this.props.navigation;
+  // const { navigate } = this.props.navigation;
 
     return (
     <View style={styles.GridColumnContainer}>
@@ -136,7 +136,7 @@ export default class Search extends Component {
       />
       <Panel title="Filters">
 				<Button
-					title="Clear all"
+					title="Clear"
 					color='red'
 					onPress={() => {
 						this.setState({
@@ -147,26 +147,27 @@ export default class Search extends Component {
 							hasSport: false,
 						});
 						// handle search
-						this.handleSearch;
+						this.makeRemoteRequest;
 					}}
         />
 
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.isPub}
-					isOff={!this.state.isPub}
 					label='Public '
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
-						this.setState({isPub: isOn})
-						this.state.data = this.state.data.filter(item => item.is_public == isOn, this.handleSearch);
-					}}
-					onToggle={(isOff) => {
-						this.setState({isPub: isOff})
-						this.state.data = this.state.fullData;
-
-					}}
+            if (isOn) {
+              this.setState({isPub: !this.state.isPub})
+              this.state.filters.push("isPub")
+			  			this.state.data = this.state.data.filter(item => item.is_public == isOn, this.handleSearch);
+            } else {
+              this.setState({isPub: !this.state.isPub})
+              this.state.filters.pop("isPub")
+					  	this.state.data = this.state.data.filter(item => item.is_public == !isOn, this.handleSearch);
+            }
+          }}
 				/>
 				<ToggleSwitch
 					style={styles.searchFilterItem}
@@ -198,6 +199,7 @@ export default class Search extends Component {
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
+              isOn = !isOn;
 							this.setState({isNonProf: isOn});
 							this.state.data = this.state.data.filter(item => item.is_non_profit == isOn, this.handleSearch);
 					}}

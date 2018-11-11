@@ -50,22 +50,40 @@ export default class Home extends Component {
                 <View style={styles.GridColumnContainer}>
                     <View style={styles.GridRowContainer}>
                         <View style={styles.GridComponent}>
-                            <Icon type="Ionicons" name="md-paper" style={[colorStyles.primaryText, styles.HomeIcon]}></Icon>
+                            <Icon
+                                type="Ionicons"
+                                name="md-paper"
+                                style={[colorStyles.primaryText, styles.HomeIcon]}>
+                            </Icon>
                             <Text style={styles.GridTitleText}>Applications</Text>
                         </View>
                         <View style={styles.gridComponent}>
-                            <Icon type="FontAwesome" name="university" style={[colorStyles.primaryText, styles.UniversityIcon]} onPress={() => {navigate('Filter', {isPublic: false})}}></Icon>
+                            <Icon
+                                type="FontAwesome"
+                                name="university"
+                                style={[colorStyles.primaryText, styles.UniversityIcon]}
+                                onPress={() => {navigate('Search', {isPublic: false})}}>
+                            </Icon>
                             <Text style={[styles.GridTitleText]}>Search Universities</Text>
                         </View>
                     </View>
 
                     <View style={styles.GridRowContainer}>
                         <View style={styles.gridComponent}>
-                            <Icon type="MaterialCommunityIcons" name="check" style={[colorStyles.primaryText, styles.HomeIcon]}></Icon>
+                            <Icon
+                                type="MaterialCommunityIcons"
+                                name="check" style={[colorStyles.primaryText, styles.HomeIcon]}
+                                onPress={() => {navigate('MyColleges')}}>
+                            </Icon>
                             <Text style={styles.GridTitleText}>Check Status</Text>
                         </View>
                         <View style={styles.gridComponent}>
-                            <Icon type="MaterialIcons" name="person" style={[colorStyles.primaryText, styles.ProfileIcon]}></Icon>
+                            <Icon 
+                                type="MaterialIcons"
+                                name="person"
+                                style={[colorStyles.primaryText, styles.ProfileIcon]}
+                                onPress={() => navigate('Profile')}>
+                            </Icon>
                             <Text style={styles.GridTitleText}>My Profile</Text>
                         </View> 
                     </View>

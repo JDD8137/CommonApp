@@ -34,7 +34,8 @@ export const styles = StyleSheet.create({
 	TitleName: {
 		color: '#FFFFFF',
 		fontWeight: '600',
-		fontSize: 18
+		fontSize: 20,
+		paddingTop: 8
 	},
     FilterLabel: {
          color: '#000000',
@@ -44,7 +45,6 @@ export const styles = StyleSheet.create({
 	},
 	IDContainer: {
 		paddingTop: 4
-
 	},
 	userID: {
 		color: '#FFFFFF'
@@ -55,24 +55,19 @@ export const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	GridRowContainer: {
-	
 		flexDirection: 'row',
 		alignItems: 'center',
 		justifyContent: 'space-around'
-
 	},
 	GridColumnContainer: {
 		
 	},
 	GridComponent: {
 		padding: 32,
-
-
 	},
 	GridTitleText: {
 		color: '#FFFFFF',
 		textAlign: 'center'
-
 	},
 	HomeIcon: {
 		fontSize: 112,
@@ -133,10 +128,77 @@ export const styles = StyleSheet.create({
 		flex: 1,
 		flexDirection: 'column',
 		padding: 4
-		// justifyContent: 'space-between',
 	},
 	searchFilterItem: {
 		flex: 1,
 		padding: 8,
+	},
+	AvatarContainer: {
+		flex: 1,
+		flexDirection: 'column',
+		alignItems: 'center',
+		paddingTop: 12,
+		paddingBottom: 6
+	},
+	SettingsContainer: {
+		flex: 4
+	},
+	SettingsRow: {
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		paddingLeft: 12,
+		paddingRight: 12,
+		paddingTop: 6,
+		paddingBottom: 6
+	},
+	SettingsTitle: {
+		color: '#FFFFFF',
+		fontWeight: '600',
+		fontSize: 28,
+		paddingTop: 8,
+		paddingBottom: 12
+	},
+	SettingsButtons: {
+		color: '#FFFFFF',
+		fontWeight: '400',
+		fontSize: 22,
+	},
+	SettingsIcon: {
+		paddingTop: 8
+	},
+	Logout: {
+		color:"#FBBC05",
+		fontWeight: '400',
+		fontSize: 18,
+	},
+	StatusHeaderContainer: {
+		height: 38,
+		flexDirection: 'row',
+		justifyContent: 'space-between',
+		backgroundColor: '#132330',
+		paddingLeft: 12,
+		paddingRight: 12,
+		paddingTop: 8
+	},
+	StatusHeader: {
+		color: '#FFFFFF',
+		fontWeight: '500',
+		fontSize: 16,
+	},
+	EditProfileContainer: {
+		flex: 4,
+		flexDirection: 'column',
+		justifyContent:'flex-start'
+	},
+	ProfileSub: {
+		flex: 1,
+		flexDirection: 'column'
+	},
+	EditProfileLabel: {
+		color: '#C8C8C8',
+		fontWeight: '400',
+		fontSize: 12,
+		paddingLeft: 16
 	}
+
 });
