@@ -13,6 +13,7 @@ import {
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 import { Database } from "../models/Database"
+import DropdownAlert from 'react-native-dropdownalert';
 
 
 export default class Home extends Component {
@@ -21,6 +22,15 @@ export default class Home extends Component {
     this.state = {
       name: Database.getUserName()
     }
+
+    var firstLoad = true;
+    Database.listenForStatusChange((newStatus) => {
+        if (firstLoad) {
+            firstLoad = false;
+        } else {
+            this.dropdown.alertWithType('success', 'Status Changed', `Application status changed to ${newStatus}. Click on Check Status!`);
+        }
+    })
   }
 
   static navigationOptions = () => ({
@@ -89,6 +99,7 @@ export default class Home extends Component {
                     </View>
                 </View>
             </View>
+            <DropdownAlert ref={ref => this.dropdown = ref} />
         </Container>
     );
   }

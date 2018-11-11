@@ -16,17 +16,18 @@
     "react-data-filter": "^0.4.1",
     "react-multi-toggle": "^1.1.0",
     "react-native": "0.56.0",
+    "react-native-dropdownalert": "^3.7.0",
     "react-native-elements": "^0.19.1",
     "react-native-fbsdk": "^0.8.0",
     "react-native-firebase": "^5.0.0",
     "react-native-google-signin": "^1.0.0-rc8",
     "react-native-progress": "^3.5.0",
-    "react-navigation": "^2.13.0",
-    "xcode": "^1.0.0",
     "react-native-settings-components": "0.0.1",
+    "react-navigation": "^2.13.0",
     "react-slidedown": "^2.0.4",
     "rn-slider-switch": "git+https://git@github.com/Astrocoders/rn-slider-switch.git",
-    "toggle-switch-react-native": "^2.0.2"
+    "toggle-switch-react-native": "^2.0.2",
+    "xcode": "^1.0.0"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",

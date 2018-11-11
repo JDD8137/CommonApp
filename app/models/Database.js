@@ -71,4 +71,14 @@ export class Database {
             });
         })
     }
+
+    static listenForStatusChange(callback) {
+        const database = firebase.database();
+        const ref = database.ref("applications");
+        ref.orderByChild("applicantId").equalTo(Database.getUserId()).on("value", (snapshot) => {
+            var val = snapshot.val();
+            var application = new Application(val[Object.keys(val)[0]]);
+            callback(application.admissionsDecision);
+        })
+    }
 }
