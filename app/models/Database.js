@@ -54,7 +54,7 @@ export class Database {
                     });
                 }
                 else {
-                    resolve(null, null);
+                    resolve([new Applicant(), new Application()]);
                 }
             })
         })

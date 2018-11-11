@@ -32,6 +32,16 @@ export class Authenticator {
         })
     }
 
+    static userIsLoggedIn(result) {
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (user) {
+                result(true);
+            } else {
+                result(false);
+            }
+        });
+    }
+
     static loginWithFacebook() {
         return new Promise((resolve, reject) => {
           LoginManager.logInWithReadPermissions(['email'])
