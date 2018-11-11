@@ -163,7 +163,18 @@ export default class EditApplication extends Component {
             )
         } else if (number == 3) {
             return (
-                <Text>Put exams here</Text>
+                <Form>
+                    <Item inlineLabel>
+                        <Label>Examining Authority:</Label>
+                        <Input placeholder="Authority" style={{ textAlign: 'right' }} value={this.state.application.examiningAuthority} onChangeText={(value) => {this.setState({application: { ...this.state.application, examiningAuthority: value}})}}/>
+                    </Item>
+                    <Item stackedLabel>
+                        <Label>Scores:</Label>
+                        <Textarea rowSpan={5} bordered placeholder="Enter Scores (with subject if applicable)" width={300} style={{marginTop: 15, marginBottom: 15}}
+                                  value={this.state.application.examScore}
+                                  onChangeText={(value) => {this.setState({application: { ...this.state.application, examScore: value}})}}/>
+                    </Item>
+                </Form>
             )
         } else if (number == 4) {
             return (
