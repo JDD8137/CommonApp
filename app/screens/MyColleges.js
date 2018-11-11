@@ -32,10 +32,6 @@ export default class Status extends Component {
       color: '#FFFFFF',
     },
     title: 'My Colleges'
-    // headerLeft:
-    //   <HeaderBarItem to='Home' title='User Profile' />
-    // headerRight:
-    //   <HeaderBarItem to='FeedbackScreen' title='Feedback' />
   });
 
   
@@ -45,10 +41,10 @@ export default class Status extends Component {
       <Container style={colorStyles.primary}>
         <View style={styles.StatusHeaderContainer}>
             <Text style={styles.StatusHeader}>
-                STATUS
+                UNIVERSITY
             </Text>
             <Text style={styles.StatusHeader}>
-                DEADLINE
+                STATUS
             </Text>
         </View>
         

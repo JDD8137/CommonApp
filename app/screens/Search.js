@@ -7,7 +7,8 @@ import {
   Image,
   FlatList,
   ActivityIndicator,
-  SafeAreaView
+  SafeAreaView,
+  Alert
 } from "react-native";
 
 import { List, ListItem, SearchBar } from "react-native-elements";
@@ -17,6 +18,8 @@ import { colorStyles, colorPalette } from "../styles/colorStyles";
 import _ from "lodash";
 import ToggleSwitch from "toggle-switch-react-native"
 import { getUniversities, contains } from "../api/index";
+
+import { Database } from "../models/Database"
 
 export default class Search extends Component {
   constructor(props) {
@@ -275,11 +278,17 @@ export default class Search extends Component {
 								containerStyle={{ borderBottomWidth: 0 }}
 								// leftIcon={name='check'}
 								onPress={() => {
-									<Panel title={'${item.name}'}>
-										<div>
-											Hello
-										</div>
-									</Panel>
+                                    Alert.alert(
+                                        `Apply to ${item.name}?`,
+                                        `Are you sure you want to apply to ${item.name}? They will be sent your entire application.`,
+                                        [
+                                            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                            {text: 'Apply', onPress: () => {
+                                                Database.applyTo(item.id);
+                                                }},
+                                        ],
+                                        { cancelable: false }
+                                    )
 								}}
 								// leftIconOnPress={() => {
 								// 	// make icon green checkmark and add to array of selected universities

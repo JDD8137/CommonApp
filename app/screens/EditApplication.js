@@ -29,6 +29,7 @@ import ProgressBar from 'react-native-progress/Bar';
 import Applicant from "../models/Applicant";
 import Application from "../models/Application";
 import { Database } from "../models/Database";
+import {colorPalette} from "../styles/colorStyles";
 
 export default class EditApplication extends Component {
     constructor(props) {
@@ -51,8 +52,26 @@ export default class EditApplication extends Component {
         })
     }
 
+    static navigationOptions = () => ({
+        headerStyle: {
+            backgroundColor: colorPalette.primary,
+            shadowRadius: 0,
+            borderBottomWidth: 0,
+        },
+        headerTintColor: '#FFFFFF',
+        headerTitleStyle: {
+            color: '#FFFFFF',
+        },
+        title: 'Edit Application'
+        // headerLeft:
+        //   <HeaderBarItem to='Home' title='User Profile' />
+        // headerRight:
+        //   <HeaderBarItem to='FeedbackScreen' title='Feedback' />
+    });
+
+
     renderHeader() {
-        return(
+        /*return(
             <Header>
                 <Left>
                     <Button transparent onPress={ () => {this.props.navigation.goBack()}} >
@@ -65,7 +84,7 @@ export default class EditApplication extends Component {
                 <Right>
                 </Right>
             </Header>
-        );
+        );*/
     }
 
     render() {

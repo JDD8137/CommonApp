@@ -59,4 +59,16 @@ export class Database {
             })
         })
     }
+
+    static applyTo(id) {
+        console.log("applied to " + id);
+        Database.loadApplication().then(result => {
+            let applicationId = result[1].id;
+            const database = firebase.database();
+            const ref = database.ref("applications/" + applicationId);
+            ref.update({
+                universityId: id
+            });
+        })
+    }
 }

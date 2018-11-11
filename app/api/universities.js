@@ -22,7 +22,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "7D5rclrPyU"
+    id: "7D5rclrPyU",
     name: "University de Dschang",
     acronym: "UDS",
     location: "Dschang",

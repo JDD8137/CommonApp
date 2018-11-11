@@ -19,6 +19,7 @@ import MyColleges from '../screens/MyColleges'
 import EditProfile from '../screens/EditProfile'
 import Notifications from '../screens/EditProfile'
 import PaymentOptions from '../screens/PaymentOptions'
+import EditApplication from "../screens/EditApplication"
 import { Authenticator } from '../models/Authenticator'
 
 export const HomeStack = StackNavigator({
@@ -43,7 +44,9 @@ export const HomeStack = StackNavigator({
   PaymentOptions: {
     screen: PaymentOptions
   },
-  
+  EditApplication: {
+      screen: EditApplication
+  }
 })
 
 export const BottomNav = TabNavigator({
