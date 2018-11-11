@@ -46,10 +46,10 @@ export const HomeStack = StackNavigator({
 })
 
 export const BottomNav = TabNavigator({
-  Logout: {      
-    screen: Login,      
+  Logout: {
+    screen: Login,
     navigationOptions: {
-      headerLeft: null,        
+      headerLeft: null,
       headerTitle: "Logout",
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon
@@ -57,8 +57,8 @@ export const BottomNav = TabNavigator({
           size={25}
           style={{color: tintColor}}/>
       ),
-    }    
-  },  
+    }
+  },
   HomeStack: {
     screen: HomeStack,
     navigationOptions: {
@@ -75,8 +75,8 @@ export const BottomNav = TabNavigator({
       // }
     }
   },
-  Settings: {      
-    screen: Settings,      
+  Settings: {
+    screen: Settings,
     navigationOptions: {
       headerLeft: null,
       tabBarIcon: ({ tintColor, focused }) => (
@@ -89,7 +89,7 @@ export const BottomNav = TabNavigator({
       // tabBarOptions: {
       //   activeTintColor: '#000000',
       // }
-    }    
+    }
   },
  }, {
    initialRouteName: 'HomeStack',
@@ -112,7 +112,7 @@ export const Root = StackNavigator({
   // HomeStack: {
   //   screen: HomeStack,
   // }
-}, 
+},
 {
   mode: 'modal',
   headerMode: 'none',

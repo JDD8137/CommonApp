@@ -14,10 +14,67 @@ import {
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 
+import {TouchableOpacity} from "react-native"
+
+const FBSDK = require('react-native-fbsdk');
+const {
+  LoginButton,
+  AccessToken
+} = FBSDK;
+
+import { Alert } from 'react-native';
+import { Authenticator } from '../models/Authenticator'
+
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      email: '',
+      password: '',
+    }
+  }
+
+  updateEmail(email) {
+    this.setState({email});
+  }
+
+  updatePassword(password) {
+    this.setState({password});
+  }
+
+  login() {
+    const { email, password } = this.state;
+    this.state.disableAutoLogin = true;
+    Authenticator.login(email, password)
+      .then(() => {
+        this.props.navigation.navigate("Home");
+      })
+      .catch(() => {
+        Alert.alert("Invalid Username and Password.");
+      });
+
+  }
+
+  loginWithFacebook() {
+    Authenticator.loginWithFacebook()
+      .then(() => {
+        this.props.navigation.navigate("Home");
+      })
+      .catch(() => {
+        Alert.alert("Unable to login with Facebook.");
+      });
+  }
+
+  loginWithGoogle() {
+    Authenticator.loginWithGoogle()
+      .then(() => {
+        this.props.navigation.navigate("Home");
+      })
+      .catch((error) => {
+        console.log(error);
+        Alert.alert("Unable to login with Google.");
+      })
   }
 
   render() {
@@ -51,7 +108,7 @@ export default class Login extends Component {
             />
           </InputGroup>
 
-          <Button block style={{marginTop:10}} onPress={() => this.props.navigation.navigate('HomeStack')}>
+          <Button block style={{marginTop:10}} onPress={() => {this.login()}}>
             <Text> Sign in </Text>
           </Button>
 
@@ -65,17 +122,23 @@ export default class Login extends Component {
           {/* TODO: FACEBOOK AUTH */}
           <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
               {/* <Icon type="FontAwesome" name="facebook" size={12} /> */}
-              <Text style={styles.facebookSignin}>
+
+              <TouchableOpacity onPress={() => {this.loginWithFacebook()}}>
+                <Text style={styles.facebookSignin}>
                 Continue with Facebook
               </Text>
+              </TouchableOpacity>
           </View>
-          
+
           {/* TODO: GOOGLE AUTH */}
           <View style={{ flexDirection: 'row', justifyContent: 'center'}}>
               {/* <Icon type="FontAwesome" name="google" size={12} /> */}
-              <Text style={styles.googleSignin}>
+              <TouchableOpacity onPress={() => {this.loginWithGoogle()}}>
+                <Text style={styles.googleSignin}>
                 Continue with Google
               </Text>
+              </TouchableOpacity>
+
           </View>
         </View>
       </Content>
