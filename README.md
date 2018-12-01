@@ -15,7 +15,7 @@ This document communicates the major features of this first release of the Commo
 
 1. After submitting an application for the first time, editing the fields and resubmitting will cause certain fields to be erased. 
 2. Settings page has not been implemented, so the user cannot change their account details after they create it.
-
+3. Clicking log out doesn't immediately redirect to the log in screen. User has to restart app. 
 
 
 
