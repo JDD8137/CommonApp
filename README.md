@@ -1,7 +1,7 @@
-## CommonApp v1.0 Release Notes
+# CommonApp v1.0 Release Notes
 
 ### Introduction
-This document communicates the major features of this first release of the Common App and known bugs / workarounds.
+This document communicates the major features of this first release of the Common App along with known bugs and workarounds.
 
 ### Feature Updates
 1. *Implemented*: User account management using email address and password and third party authentication via Facebook and Google.
@@ -12,3 +12,25 @@ This document communicates the major features of this first release of the Commo
 6. *Implemented*: Admissions decision feature for university admissions officers.
 
 ### Known Bugs and Workarounds
+
+
+
+
+
+
+
+
+==========================================================================================================================================
+
+# CommonApp Installation Guide
+
+- **Pre-requisites**:
+  - Hardware:
+	  - *Physical Device*:
+	  	  - Android: Mobile phone running latest version of Android OS
+	  	  - iOS: Apple device running latest version of iOS
+    - *Virtual Device*:
+	    - Android: Computer with Android Studio [installed](https://developer.android.com/studio/install)
+	    - iOS: Computer with Xcode [installed] ()
+  - Software: 
+	  - Computer with latest version of node.js installed [installation
