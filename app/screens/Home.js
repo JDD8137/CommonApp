@@ -14,13 +14,15 @@ import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 import { Database } from "../models/Database"
 import DropdownAlert from 'react-native-dropdownalert';
+import {Avatar} from 'react-native-elements';
 
 
 export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: Database.getUserName()
+      name: Database.getUserName(),
+      pic: Database.getPhoto()
     }
 
     var firstLoad = true;
@@ -50,11 +52,17 @@ export default class Home extends Component {
     return (
         <Container style={colorStyles.primary}>
             <View style={styles.TitleContainer}>
-                <View style={styles.TitleHeader}>
-                    <Text style={styles.TitleName}>
-                        {this.state.name}
-                    </Text>
-                </View>
+            <View style={[styles.AvatarContainer, styles.TitleHeader]}>
+            <Avatar
+                rounded
+                size="large"
+                source={{uri: this.state.pic}}
+                activeOpacity={0.75}/>
+                <Text style={styles.SettingsTitle}>
+                    {/* TODO: change to user name */}
+                    {this.state.name}
+                </Text>
+            </View>
                 {/* <View style={styles.IDContainer}>
                     <Text style={styles.userID}>ID: <Text style={styles.userID}>900555555</Text></Text>
                 </View> */}

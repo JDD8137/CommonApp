@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 import {Avatar, Text} from 'react-native-elements';
+import { Database } from "../models/Database"
 
 import {
   Button,
@@ -19,6 +20,12 @@ import {
 export default class EditProfile extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+        name: Database.getUserName(),
+        email: Database.getEmail(),
+        pic: Database.getPhoto(),
+        userName: Database.getUserId()
+    }
   }
 
   static navigationOptions = () => ({
@@ -38,6 +45,7 @@ export default class EditProfile extends Component {
     //   <HeaderBarItem to='FeedbackScreen' title='Feedback' />
   });
 
+
   
   render() {
     const { navigate } = this.props.navigation;
@@ -48,13 +56,11 @@ export default class EditProfile extends Component {
             <Avatar
                 rounded
                 size="large"
-                //  TODO: change to user google photo
-                source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg"}}
+                source={{uri: this.state.pic}}
                 activeOpacity={0.75}
             />
             <Text style={styles.SettingsTitle}>
-                {/* TODO: change to user name */}
-                First Last
+                {this.state.name}
             </Text>
         </View>
 
@@ -66,8 +72,7 @@ export default class EditProfile extends Component {
                 <Content contentContainerStyle={{flex:1, flexDirection: "column", alignItems:"center",paddingLeft: 12,paddingRight: 12,}}>
                     <InputGroup>
                         <Input
-                            // change to logged in username
-                            placeholder='First'
+                            placeholder={this.state.name.substr(0, this.state.name.indexOf(' '))}
                             placeholderTextColor={colorPalette.primaryText}
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -88,8 +93,7 @@ export default class EditProfile extends Component {
                 <Content contentContainerStyle={{flex:1, flexDirection: "column", alignItems:"center",paddingLeft: 12,paddingRight: 12,}}>
                     <InputGroup>
                         <Input
-                            // change to logged in username
-                            placeholder='Last'
+                            placeholder={this.state.name.substr(this.state.name.indexOf(' '), this.state.name.length - 1)}
                             placeholderTextColor={colorPalette.primaryText}
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -110,7 +114,7 @@ export default class EditProfile extends Component {
                     <InputGroup>
                         <Input
                             // change to logged in email
-                            placeholder='user@gmail.com'
+                            placeholder={this.state.email}
                             placeholderTextColor={colorPalette.primaryText}
                             autoCapitalize="none"
                             autoCorrect={false}
@@ -123,31 +127,11 @@ export default class EditProfile extends Component {
                 </Content>
             </View>
 
-            <View style={styles.ProfileSub}>
-                <Text style={styles.EditProfileLabel}>
-                        Username
-                </Text>
-                <Content contentContainerStyle={{flexDirection: "column", alignItems:"center",paddingLeft: 12,paddingRight: 12}}>
-                    <InputGroup>
-                        <Input
-                            // change to logged in username
-                            placeholder='username'
-                            placeholderTextColor={colorPalette.primaryText}
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                            keyboardType='default'
-                            style={colorStyles.primaryText}
-                            // TODO: Create update function to change username in FireBase
-                            // onChangeText={(email) => {this.updateusername(email);}}
-                        />
-                    </InputGroup>
-                </Content>
-            </View>
 
             {/* TODO: Logout User */}
         <Button
             transparent
-            style={{alignContent: 'center', justifyContent: 'center'}}>
+            style={{alignContent: 'center', justifyContent: 'center', flex: 3}}>
                 <Text h4 style={styles.SettingsButtons}> Save</Text>
         </Button>
           </View>
