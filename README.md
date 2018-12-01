@@ -11,9 +11,10 @@ This document communicates the major features of this first release of the Commo
 5. *Implemented*: Mobile money payment platform for university application fee processing.
 6. *Implemented*: Admissions decision feature for university admissions officers.
 
-### Known Bugs and Workarounds
+### Known Bugs / Missing features
 
-
+1. After submitting an application for the first time, editing the fields and resubmitting will cause certain fields to be erased. 
+2. Settings page has not been implemented, so the user cannot change their account details after they create it.
 
 
 
