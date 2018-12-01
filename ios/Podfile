@@ -9,6 +9,8 @@ target 'CommonApp' do
 
   #pod 'react-native-fbsdk', :path => '../node_modules/react-native-fbsdk'
 
+  pod 'ReactNativeLocalization', :path => '../node_modules/react-native-localization'
+
   target 'CommonAppTests' do
     inherit! :search_paths
     # Pods for testing
