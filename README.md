@@ -39,7 +39,7 @@ This document communicates the major features of this first release of the Commo
 	- React-Native [installation instructions](https://facebook.github.io/react-native/docs/getting-started.html)
 
 - **Download Instructions**:
-	- Clone the application code directly from this repository
+	- Clone or download the application code directly from this repository
 
 - **Build, Installation and Run Instructions**:
 	- Navigate to the folder where the project was cloned from the previous step on Terminal (on Mac) or Command Prompt (on Windows)
