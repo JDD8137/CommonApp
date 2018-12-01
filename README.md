@@ -36,4 +36,15 @@ This document communicates the major features of this first release of the Commo
   		- Computer with latest version of node.js installed [installed](https://nodejs.org/en/)
 	
 - **Dependent Libraries**:
-	- 
+	- React-Native [installation instructions](https://facebook.github.io/react-native/docs/getting-started.html)
+
+- **Download Instructions**:
+	- Clone the application code directly from here
+
+- **Build, Installation and Run Instructions**:
+	- Navigate to the folder where the project was cloned from the previous step on Terminal (on Mac) or Command Prompt (on Windows)
+	- Open up Android emulator or iOS simulator depending on run platform of choice. If using a physical device, ensure that device is connected to computer using a USB (or other) cable.
+	- Now type `npm i` and run the command on the Terminal or Command Prompt. This will install the application dependcies.
+	- Then, run `react-native run-android` to build and run the application for Android or `react-native run-ios` to build and run the application for iOS.
+
+The application show now be running on your device!
