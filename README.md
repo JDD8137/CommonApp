@@ -47,4 +47,4 @@ This document communicates the major features of this first release of the Commo
 	- Now type `npm i` and run the command on the Terminal or Command Prompt. This will install the application dependcies.
 	- Then, run `react-native run-android` to build and run the application for Android or `react-native run-ios` to build and run the application for iOS.
 
-The application show now be running on your device!
+The application should now be running on your device!
