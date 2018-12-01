@@ -20,7 +20,7 @@ This document communicates the major features of this first release of the Commo
 
 
 
-==========================================================================================================================================
+=====================================================================================================================
 
 # CommonApp Installation Guide
 
@@ -29,8 +29,8 @@ This document communicates the major features of this first release of the Commo
 	  - *Physical Device*:
 	  	  - Android: Mobile phone running latest version of Android OS
 	  	  - iOS: Apple device running latest version of iOS
-    - *Virtual Device*:
-	    - Android: Computer with Android Studio [installed](https://developer.android.com/studio/install)
-	    - iOS: Computer with Xcode [installed] ()
+    	- *Virtual Device*:
+		    - Android: Computer with Android Studio [installed](https://developer.android.com/studio/install)
+		    - iOS: Computer with Xcode [installed](https://developer.apple.com/xcode/)
   - Software: 
-	  - Computer with latest version of node.js installed [installation
+	  - Computer with latest version of node.js installed [installed](https://nodejs.org/en/)
