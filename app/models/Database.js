@@ -3,6 +3,7 @@ import firebase from 'react-native-firebase';
 
 import Applicant from "./Applicant";
 import Application from "./Application";
+import UniversitySubmission from "./UniversitySubmission"
 
 export class Database {
     static getUserId() {
@@ -65,16 +66,38 @@ export class Database {
         })
     }
 
-    static applyTo(id) {
-        Database.loadApplication().then(result => {
-            let applicationId = result[1].id;
+    static loadUniversitySubmissions() {
+        return new Promise((resolve, reject) => {
+            var userId = Database.getUserId();
             const database = firebase.database();
-            const ref = database.ref("applications/" + applicationId);
-            ref.update({
-                universityId: id,
-                admissionsDecision: "In Review"
+            const ref = database.ref("universitySubmissions");
+            ref.orderByChild("applicationId").equalTo(userId).on("value", (snapshot) => {
+                if (snapshot.exists()) {
+                    var submissions = [];
+                    snapshot.forEach(childSnapshot => {
+                        let submission = new UniversitySubmission(childSnapshot.val());
+                        submission.id = childSnapshot.key;
+                        submissions.push(submission);
+                    });
+                    resolve(submissions);
+                }
             });
         })
+    }
+
+    static applyTo(universityId) {
+        let submission = new UniversitySubmission();
+        submission.universityId = universityId;
+        submission.applicationId = Database.getUserId();
+        submission.paymentReceived = false;
+        submission.submittedDate = (new Date()).toString();
+        submission.admissionsDecision = "Payment Pending";
+        const database = firebase.database();
+        const ref = database.ref("universitySubmissions/");
+        let id = ref.push().key;
+        ref.child(id).set({
+            ...submission
+        });
     }
 
     static listenForStatusChange(callback) {

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
 	AppRegistry,
 	Button,
-  Icon,
   View,
   Image,
   FlatList,
@@ -11,7 +10,7 @@ import {
   Alert
 } from "react-native";
 
-import { List, ListItem, SearchBar } from "react-native-elements";
+import { List, ListItem, SearchBar, Icon } from "react-native-elements";
 import { styles } from '../styles/styles';
 import Panel from '../Components/Panel';
 import { colorStyles, colorPalette } from "../styles/colorStyles";
@@ -40,8 +39,17 @@ export default class Search extends Component {
 			isNonProf: false,
 			hasSport: false,
       expanded: false,
-      groupSize: 3
+      groupSize: 3,
+      submissions: []
     };
+
+    this.updateSubmissions();
+  }
+
+  updateSubmissions() {
+      Database.loadUniversitySubmissions().then(submissions => {
+          this.setState({submissions: submissions});
+      })
   }
 
   static navigationOptions = () => ({
@@ -59,6 +67,15 @@ export default class Search extends Component {
     // headerRight:
     //   <HeaderBarItem to='FeedbackScreen' title='Feedback' />
   });
+
+  userAppliedTo(universityId, submissions) {
+      for (var submission in submissions) {
+          if (submissions[submission].universityId == universityId) {
+              return true;
+          }
+      }
+      return false;
+  }
 
   componentDidMount() {
     this.makeRemoteRequest();
@@ -322,22 +339,23 @@ export default class Search extends Component {
 								containerStyle={{ borderBottomWidth: 0 }}
 								// leftIcon={name='check'}
 								onPress={() => {
-                                    Alert.alert(
-                                        `Apply to ${item.name}?`,
-                                        `Are you sure you want to apply to ${item.name}? They will be sent your entire application.`,
-                                        [
-                                            {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                                            {text: 'Apply', onPress: () => {
-                                                navigate("Payment", {university: item});
+								    if (!this.userAppliedTo(item.id, this.state.submissions)) {
+                                        Alert.alert(
+                                            `Apply to ${item.name}?`,
+                                            `Are you sure you want to apply to ${item.name}? They will be sent your entire application.`,
+                                            [
+                                                {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                                {text: 'Apply', onPress: () => {
+                                                        navigate("Payment", {university: item, onComplete: () => {this.updateSubmissions()}});
 
-                                                }},
-                                        ],
-                                        { cancelable: false }
-                                    )
+                                                    }},
+                                            ],
+                                            { cancelable: false }
+                                        )
+                                    }
+
 								}}
-								// leftIconOnPress={() => {
-								// 	// make icon green checkmark and add to array of selected universities
-								// }}
+                rightIcon={this.userAppliedTo(item.id, this.state.submissions) ? <Icon name="done" /> : <Icon name="chevron-right" />}
               />
             )}
             keyExtractor={item => item.name}

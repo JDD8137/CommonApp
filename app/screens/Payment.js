@@ -46,7 +46,8 @@ export default class Payment extends Component {
             requestPayment(this.state.id, "Payment to " + university.name, "49.99",`${Math.floor(Math.random * 99999999)}`).then(() => {
                 Database.applyTo(university.id);
                 Alert.alert(`Successfully Applied to ${university.name}!`, "Your application has been successfully submitted, pending fee payment through your Mobile Money account.")
-                this.props.navigation.navigate("Search");
+                this.props.navigation.navigate("Home");
+                //this.props.navigation.getParam("onComplete")();
             }).catch(error => {
                 console.log(error);
             })

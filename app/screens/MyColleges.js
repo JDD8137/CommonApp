@@ -13,6 +13,9 @@ import {
   Spinner,
   Text,
   View,
+    List,
+    ListItem,
+    Body
 } from 'native-base'
 
 import { getUniversities, contains } from "../api/index";
@@ -23,32 +26,20 @@ export default class Status extends Component {
     super(props);
 
     this.state = {
-        application: {}
+        submissions: [],
     }
-    Database.loadApplication().then((result) => {
-        console.log("loaded");
-        if (result[1] != null) {
-            console.log("not null");
-
-            var application = result[1];
-            getUniversities(15, "")
-                .then(universities => {
-                    var universityName = "";
-                    universities.forEach((uni) => {
-                        if (uni.id == application.universityId) {
-                            universityName = uni.name
-                        }
-                    });
-                    console.log(universityName);
-                    console.log(application.admissionsDecision);
-                    this.setState({
-                        universityName: universityName,
-                        admissionsDecision: application.admissionsDecision
-                    });
-                })
-                .catch(error => {
+    Database.loadUniversitySubmissions().then((submissions) => {
+        getUniversities(15, "")
+            .then(universities => {
+                submissions.forEach(submission => {
+                    submission.universityName = universities.filter(a => {return a.id == submission.universityId})[0].name
                 });
-        }
+                this.setState({
+                    submissions: submissions,
+                });
+            })
+            .catch(error => {
+            });
     })
   }
 
@@ -79,12 +70,22 @@ export default class Status extends Component {
             </Text>
         </View>
           <View style={{...styles.StatusHeaderContainer, backgroundColor: ""}}>
-              <Text style={styles.StatusHeader}>
-                  {this.state.universityName}
-              </Text>
-              <Text style={styles.StatusHeader}>
-                  {this.state.admissionsDecision}
-              </Text>
+              <View style={{flex: 1, flexDirection:"column"}}>
+              {this.state.submissions.map(submission => {
+                  return (
+                      <View key={submission.id}>
+                          <View style={{...styles.StatusHeaderContainer, backgroundColor: "", marginRight:-20, marginLeft:-20}}>
+                              <Text style={styles.StatusHeader}>
+                                  {submission.universityName}
+                              </Text>
+                              <Text style={styles.StatusHeader}>
+                                  {submission.admissionsDecision}
+                              </Text>
+                          </View>
+                      </View>
+                  )
+              })}
+              </View>
           </View>
       </Container>
     );
