@@ -22,6 +22,8 @@ target 'CommonApp' do
   pod 'Firebase/Database', '~> 5.9.0'
   pod 'GoogleAppMeasurement', '~> 5.2.0'
   pod 'GoogleSignIn'
+  pod 'React', :path => '../node_modules/react-native'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
 end
 
 target 'CommonApp-tvOS' do

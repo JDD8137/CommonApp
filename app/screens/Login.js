@@ -24,6 +24,7 @@ const {
 
 import { Alert } from 'react-native';
 import { Authenticator } from '../models/Authenticator'
+import { strings } from "../config/LanguageTranslations"
 
 
 export default class Login extends Component {
@@ -97,7 +98,7 @@ export default class Login extends Component {
           <InputGroup>
             <Icon name="mail" style={colorStyles.primaryText} />
             <Input
-              placeholder='Email'
+              placeholder={strings.email}
               placeholderTextColor={colorPalette.primaryText}
               autoCapitalize="none"
               autoCorrect={false}
@@ -109,7 +110,7 @@ export default class Login extends Component {
           <InputGroup>
             <Icon name='lock' style={colorStyles.primaryText}/>
             <Input
-              placeholder='Password'
+              placeholder={strings.password}
               placeholderTextColor={colorPalette.primaryText}
               secureTextEntry={true}
               autoCapitalize="none"
@@ -120,14 +121,14 @@ export default class Login extends Component {
           </InputGroup>
 
           <Button block style={{marginTop:10}} onPress={() => {this.login()}}>
-            <Text> Sign in </Text>
+            <Text> {strings.signIn}</Text>
           </Button>
 
           <Text style={[colorStyles.primaryText, {textAlign:"center", marginTop:20}]} onPress={() => {navigate('Signup')}}>
-            Don't have an account yet? <Text style={{color:"#4cb1ff"}}>Sign up!</Text>
+              {strings.noAccount} <Text style={{color:"#4cb1ff"}}>{strings.signUp}</Text>
           </Text>
           <Text style={{textAlign:"center", color:"#4cb1ff"}} onPress={() => {navigate('Signup')}}>
-            Forgot Password?
+              {strings.forgotPassword}
           </Text>
 
           {/* TODO: FACEBOOK AUTH */}
@@ -136,7 +137,7 @@ export default class Login extends Component {
 
               <TouchableOpacity onPress={() => {this.loginWithFacebook()}}>
                 <Text style={styles.facebookSignin}>
-                Continue with Facebook
+                    {strings.continueFacebook}
               </Text>
               </TouchableOpacity>
           </View>
@@ -146,7 +147,7 @@ export default class Login extends Component {
               {/* <Icon type="FontAwesome" name="google" size={12} /> */}
               <TouchableOpacity onPress={() => {this.loginWithGoogle()}}>
                 <Text style={styles.googleSignin}>
-                Continue with Google
+                    {strings.continueGoogle}
               </Text>
               </TouchableOpacity>
 

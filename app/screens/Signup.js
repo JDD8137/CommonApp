@@ -20,6 +20,7 @@ import {
 
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
+import { strings } from "../config/LanguageTranslations"
 
 import { Alert } from 'react-native';
 import { Authenticator } from '../models/Authenticator'
@@ -82,7 +83,7 @@ export default class Signup extends Component {
           <InputGroup>
             <Icon name="person" style={colorStyles.primaryText} />
             <Input
-              placeholder='Name'
+              placeholder={strings.name}
               placeholderTextColor={colorPalette.primaryText}
               autoCapitalize="words"
               autoCorrect={false}
@@ -93,7 +94,7 @@ export default class Signup extends Component {
           <InputGroup>
             <Icon name="mail" style={colorStyles.primaryText} />
             <Input
-              placeholder='Email'
+              placeholder={strings.email}
               placeholderTextColor={colorPalette.primaryText}
               autoCapitalize="none"
               autoCorrect={false}
@@ -105,7 +106,7 @@ export default class Signup extends Component {
           <InputGroup>
             <Icon name='lock' style={colorStyles.primaryText}/>
             <Input
-              placeholder='Password'
+              placeholder={strings.password}
               placeholderTextColor={colorPalette.primaryText}
               secureTextEntry={true}
               autoCapitalize="none"
@@ -129,7 +130,7 @@ export default class Signup extends Component {
 
 
           <Button block style={{marginTop:10}} onPress={() => {this.register()}}>
-            <Text> Sign up </Text>
+            <Text> {strings.signUp}</Text>
           </Button>
 
 

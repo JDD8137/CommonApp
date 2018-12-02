@@ -15,6 +15,7 @@ import { colorStyles, colorPalette } from "../styles/colorStyles"
 import { Database } from "../models/Database"
 import DropdownAlert from 'react-native-dropdownalert';
 import {Avatar} from 'react-native-elements';
+import { strings } from "../config/LanguageTranslations"
 
 
 export default class Home extends Component {
@@ -73,7 +74,7 @@ export default class Home extends Component {
                     <View style={styles.GridRowContainer}>
                         <View style={styles.GridComponent}>
                             <Icon type="Ionicons" name="md-paper" style={[colorStyles.primaryText, styles.HomeIcon]} onPress={() => {navigate('EditApplication', {isPublic: false})}}></Icon>
-                            <Text style={styles.GridTitleText}>Application</Text>
+                            <Text style={styles.GridTitleText}>{strings.applicationTitle}</Text>
                         </View>
                         <View style={styles.gridComponent}>
                             <Icon
@@ -82,7 +83,7 @@ export default class Home extends Component {
                                 style={[colorStyles.primaryText, styles.UniversityIcon]}
                                 onPress={() => {navigate('Search', {isPublic: false})}}>
                             </Icon>
-                            <Text style={[styles.GridTitleText]}>Search Universities</Text>
+                            <Text style={[styles.GridTitleText]}>{strings.searchTitle}</Text>
                         </View>
                     </View>
 
@@ -93,7 +94,7 @@ export default class Home extends Component {
                                 name="check" style={[colorStyles.primaryText, styles.HomeIcon]}
                                 onPress={() => {navigate('MyColleges')}}>
                             </Icon>
-                            <Text style={styles.GridTitleText}>Check Status</Text>
+                            <Text style={styles.GridTitleText}>{strings.statusTitle}</Text>
                         </View>
                         <View style={styles.gridComponent}>
                             <Icon 
@@ -102,7 +103,7 @@ export default class Home extends Component {
                                 style={[colorStyles.primaryText, styles.ProfileIcon]}
                                 onPress={() => navigate('Profile')}>
                             </Icon>
-                            <Text style={styles.GridTitleText}>My Profile</Text>
+                            <Text style={styles.GridTitleText}>{strings.profileTitle}</Text>
                         </View> 
                     </View>
                 </View>
