@@ -20,6 +20,7 @@ import EditProfile from '../screens/EditProfile'
 import Notifications from '../screens/EditProfile'
 import PaymentOptions from '../screens/PaymentOptions'
 import EditApplication from "../screens/EditApplication"
+import Payment from "../screens/Payment"
 import { Authenticator } from '../models/Authenticator'
 
 export const HomeStack = StackNavigator({
@@ -46,6 +47,9 @@ export const HomeStack = StackNavigator({
   },
   EditApplication: {
       screen: EditApplication
+  },
+  Payment: {
+      screen: Payment
   }
 })
 

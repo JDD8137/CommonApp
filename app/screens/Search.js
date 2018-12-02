@@ -19,6 +19,8 @@ import _ from "lodash";
 import ToggleSwitch from "toggle-switch-react-native"
 import { getUniversities, contains } from "../api/index";
 
+import {requestPayment} from "../api/mobileMoney"
+
 import { Database } from "../models/Database"
 
 export default class Search extends Component {
@@ -282,6 +284,7 @@ export default class Search extends Component {
 
 
   render() {
+    const { navigate } = this.props.navigation;
     const isP = this.getPublic();
     const isPrivate = this.getPrivate();
     const isProfit = this.getProfit();
@@ -325,8 +328,8 @@ export default class Search extends Component {
                                         [
                                             {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
                                             {text: 'Apply', onPress: () => {
-                                                Database.applyTo(item.id);
-                                                Alert.alert(`Successfully applied to ${item.name}`)
+                                                navigate("Payment", {university: item});
+
                                                 }},
                                         ],
                                         { cancelable: false }
