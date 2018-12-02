@@ -21,6 +21,7 @@
     "react-native-fbsdk": "^0.8.0",
     "react-native-firebase": "^5.0.0",
     "react-native-google-signin": "^1.0.0-rc8",
+    "react-native-localization": "^2.0.3",
     "react-native-progress": "^3.5.0",
     "react-native-settings-components": "0.0.1",
     "react-navigation": "^2.13.0",
