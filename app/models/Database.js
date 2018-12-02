@@ -17,6 +17,11 @@ export class Database {
       return firebase.auth().currentUser.email;
     }
 
+    static getPhoto() {
+        return firebase.auth().currentUser.photoURL;
+    }
+    
+
     static createApplication(applicant, application) {
         return new Promise((resolve, reject) => {
             var userId = Database.getUserId();

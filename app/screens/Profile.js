@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 import {Avatar, Text} from 'react-native-elements';
+import { Database } from "../models/Database"
 
 import {
   Button,
@@ -13,6 +14,10 @@ import {
 export default class Profile extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+        name: Database.getUserName(),
+        pic: Database.getPhoto()
+    }
   }
 
   static navigationOptions = () => ({
@@ -42,12 +47,12 @@ export default class Profile extends Component {
                 rounded
                 size="large"
                 //  TODO: change to user google photo
-                source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg"}}
+                source={{uri: this.state.pic}}
                 activeOpacity={0.75}
             />
             <Text style={styles.SettingsTitle}>
                 {/* TODO: change to user name */}
-                User User
+                {this.state.name}
             </Text>
         </View>
 

@@ -162,6 +162,7 @@ export const styles = StyleSheet.create({
 		color: '#FFFFFF',
 		fontWeight: '400',
 		fontSize: 22,
+		
 	},
 	SettingsIcon: {
 		paddingTop: 8

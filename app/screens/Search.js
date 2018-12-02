@@ -34,7 +34,6 @@ export default class Search extends Component {
       error: null,
       query: "",
 			fullData: [],
-			clearAll: false,
 			isPub: false,
 			isPriv: false,
 			isProf: false,
@@ -139,6 +138,7 @@ export default class Search extends Component {
         round
         onChangeText={this.handleSearch}
       />
+
       <Panel title="Filters">
 				<Button
 					title="Clear"
@@ -152,9 +152,8 @@ export default class Search extends Component {
 							hasSport: false,
 						});
 						// handle search
-						this.makeRemoteRequest;
-					}}
-        />
+						this.makeRemoteRequest();
+					}}/>
 
 				<ToggleSwitch
 					style={styles.searchFilterItem}
@@ -163,17 +162,15 @@ export default class Search extends Component {
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
+            this.setState({isPub: !this.state.isPub})
             if (isOn) {
-              this.setState({isPub: !this.state.isPub})
-              this.state.filters.push("isPub")
 			  			this.state.data = this.state.data.filter(item => item.is_public == isOn, this.handleSearch);
             } else {
-              this.setState({isPub: !this.state.isPub})
-              this.state.filters.pop("isPub")
-					  	this.state.data = this.state.data.filter(item => item.is_public == !isOn, this.handleSearch);
+              // this.makeRemoteRequest();
+              this.getCurrentFilters();
             }
-          }}
-				/>
+          }}/>
+
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.isPriv}
@@ -181,10 +178,16 @@ export default class Search extends Component {
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
-						this.setState({isPriv: isOn});
-						this.state.data = this.state.data.filter(item => item.is_public == isOn, this.handleSearch);
-					}}
-				/>
+            this.setState({isPriv: !this.state.isPriv})
+            if (isOn) {
+						  this.state.data = this.state.data.filter(item => item.is_public == isOn, this.handleSearch);
+            } else {
+              // this.makeRemoteRequest();
+              this.getCurrentFilters();
+            }
+						
+					}}/>
+
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.isProf}
@@ -192,11 +195,16 @@ export default class Search extends Component {
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
-							this.setState({isProf: isOn});
-							this.state.data = this.state.data.filter(item => item.is_non_profit == isOn, this.handleSearch);
-					}}
-					// isOn={this.state.isProf}
-				/>
+            this.setState({isProf: !this.state.isProf})
+            if (isOn) {
+              this.state.data = this.state.data.filter(item => item.is_non_profit == isOn, this.handleSearch);
+            } else {
+              // this.makeRemoteRequest();
+              this.getCurrentFilters();
+            }
+            
+					}}/>
+
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.isNonProf}
@@ -204,11 +212,16 @@ export default class Search extends Component {
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
-              isOn = !isOn;
-							this.setState({isNonProf: isOn});
+            this.setState({isNonProf: !this.state.isNonProf})
+            if (isOn) {
 							this.state.data = this.state.data.filter(item => item.is_non_profit == isOn, this.handleSearch);
-					}}
-				/>
+            } else {
+              // this.makeRemoteRequest();
+              this.getCurrentFilters();
+            }
+            
+					}}/>
+
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.hasSport}
@@ -216,14 +229,42 @@ export default class Search extends Component {
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
-							this.setState({hasSport: isOn});
-							this.state.data = this.state.data.filter(item => item.has_sports_facility == isOn, this.handleSearch);
-					}}
-				/>
+            this.setState({hasSport: !this.state.hasSport})
+            if (isOn) {
+              this.state.data = this.state.data.filter(item => item.has_sports_facility == isOn, this.handleSearch);
+            } else {
+              // this.makeRemoteRequest();
+              this.getCurrentFilters();
+            }
+						
+					}}/>
+
 			</Panel>
 		</View>
 		);
-	};
+  };
+  
+  clearAll = () => {
+    this.setState({isPub: false,
+                   isPriv: false,
+                   isProf: false,
+                   isNonProf: false,
+                   hasSport:false})
+  }
+
+  getCurrentFilters = () => {
+    this.makeRemoteRequest();
+    if (this.state.isPub)
+      this.state.data = this.state.data.filter(item => item.is_public == true, this.handleSearch);
+    if (this.state.isPriv)
+      this.state.data = this.state.data.filter(item => item.is_public == false, this.handleSearch);
+    if (this.state.isProf)
+      this.state.data = this.state.data.filter(item => item.is_non_profit == false, this.handleSearch);
+    if (this.state.isNonProf)
+      this.state.data = this.state.data.filter(item => item.is_non_profit == true, this.handleSearch);
+    if (this.state.hasSport)
+      this.state.data = this.state.data.filter(item => item.hasSport == true, this.handleSearch);
+  }
 
   renderFooter = () => {
     if (!this.state.loading) return null;

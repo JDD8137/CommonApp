@@ -1,6 +1,6 @@
 export default [
   {
-    id: "3rVIVsyRBp",
+    id: "ZiOihMuW6T",
     name: "University de Yaounde I",
     acronym: "UYI",
     location: "Yaounde",
@@ -22,7 +22,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "7D5rclrPyU",
+    id: "3rVIVsyRBp",
     name: "University de Dschang",
     acronym: "UDS",
     location: "Dschang",
@@ -45,7 +45,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "7ZW3FSeZpv",
+    id: "AlR1jMC6qz",
     name: "University de Douala",
     acronym: "UDLA",
     location: "Doala",
@@ -67,7 +67,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "AlR1jMC6qz",
+    id: "TJuANOmuXC",
     name: "University de Buea",
     acronym: "UB",
     location: "Buea",
@@ -89,7 +89,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "DxNhkid3aG",
+    id: "jnXaGz5jtM",
     name: "University de Maroua",
     acronym: "UM",
     location: "Maroua",
@@ -110,7 +110,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "Iue4t32dv2",
+    id: "TcA2x8Avnt",
     name: "University de Ngaoundere",
     acronym: "UN",
     location: "Ngaoundere",
@@ -132,7 +132,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "TJuANOmuXC",
+    id: "mH7KgTsHno",
     name: "University Catholique d'Afrique Centrale",
     acronym: "UCAC",
     location: "Yaounde",
@@ -153,7 +153,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "TcA2x8Avnt",
+    id: "ZTN0ZSKi54",
     name: "University des Montagnes",
     acronym: "UdM",
     location: "Bangangte",
@@ -174,7 +174,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "ZTN0ZSKi54",
+    id: "7D5rclrPyU",
     name: "University de Bamenda",
     acronym: "UDB",
     location: "Bamenda",
@@ -195,7 +195,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "ZiOihMuW6T",
+    id: "lNqM4bLfi5",
     name: "Catholic University OF Cameroon",
     acronym: "CATUC",
     location: "Bamenda",
@@ -216,7 +216,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "ireANBvbOs",
+    id: "o65lIiBnuU",
     name: "Bamenda University of Science and Technology",
     acronym: "BUST",
     location: "Bamenda",
@@ -237,7 +237,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "jnXaGz5jtM",
+    id: "DxNhkid3aG",
     name: "University Adventiste Cosendai",
     acronym: "UAC",
     location: "Nanga-Eboko",
@@ -259,7 +259,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "lNqM4bLfi5",
+    id: "ireANBvbOs",
     name: "University de Yaounde II",
     acronym: "UYII",
     location: "Soa",
@@ -281,7 +281,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "mH7KgTsHno",
+    id: "Iue4t32dv2",
     name: "University Protestante d'Afrique Centrale",
     acronym: "UPAC",
     location: "Yaounde",
@@ -302,7 +302,7 @@ export default [
     accepts_internationals: true
   },
   {
-    id: "o65lIiBnuU",
+    id: "7ZW3FSeZpv",
     name: "Universite de Yaounde Sud Joseph NDI SAMBA",
     acronym: "NDI-SAMBA",
     location: "Yaounde",
