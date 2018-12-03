@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 import {Avatar, Text} from 'react-native-elements';
-import { Database } from "../models/Database"
+import { Database } from "../models/Database";
+import { strings } from "../config/LanguageTranslations";
 
 import {
   Button,
@@ -59,7 +60,7 @@ export default class Profile extends Component {
         <View style={styles.SettingsContainer}>
             <View style={styles.SettingsRow}>
                 <Button transparent onPress={() => this.props.navigation.navigate('EditProfile')}>
-                    <Text h4 style={styles.SettingsButtons}> Edit Profile </Text>
+                    <Text h4 style={styles.SettingsButtons}> {strings.editProfile} </Text>
                 </Button>
                 <Icon
                     type='MaterialIcons'
@@ -71,7 +72,7 @@ export default class Profile extends Component {
 
             <View style={styles.SettingsRow}>
                 <Button transparent onPress={() => this.props.navigation.navigate('Notifications')}>
-                    <Text h4 style={styles.SettingsButtons}> Notifications </Text>
+                    <Text h4 style={styles.SettingsButtons}> {strings.notifications} </Text>
                 </Button>
                 <Icon
                     type='MaterialIcons'
@@ -83,7 +84,7 @@ export default class Profile extends Component {
 
             <View style={styles.SettingsRow}>
                 <Button transparent onPress={() => this.props.navigation.navigate('PaymentOptions')}>
-                    <Text h4 style={styles.SettingsButtons}> Payment Options </Text>
+                    <Text h4 style={styles.SettingsButtons}> {strings.paymentOptions} </Text>
                 </Button>
                 <Icon
                     type='MaterialIcons'
@@ -96,7 +97,7 @@ export default class Profile extends Component {
         
         {/* TODO: Logout User */}
         <Button transparent onPress={() => this.props.navigation.navigate('Login')}>
-                    <Text h4 style={styles.SettingsButtons}> logout</Text>
+                    <Text h4 style={styles.SettingsButtons}> {strings.logout} </Text>
         </Button>
     </View>
         

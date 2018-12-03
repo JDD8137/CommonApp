@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import {
-	AppRegistry,
 	Button,
   View,
-  Image,
   FlatList,
   ActivityIndicator,
   SafeAreaView,
@@ -17,6 +15,7 @@ import { colorStyles, colorPalette } from "../styles/colorStyles";
 import _ from "lodash";
 import ToggleSwitch from "toggle-switch-react-native"
 import { getUniversities, contains } from "../api/index";
+import { strings } from "../config/LanguageTranslations"
 
 import {requestPayment} from "../api/mobileMoney"
 
@@ -150,15 +149,15 @@ export default class Search extends Component {
     return (
     <View style={styles.GridColumnContainer}>
       <SearchBar
-        placeholder= "Search by name, location or acronym."
+        placeholder= {strings.searchBy}
         lightTheme
         round
         onChangeText={this.handleSearch}
       />
 
-      <Panel title="Filters">
+      <Panel title={strings.filters}>
 				<Button
-					title="Clear"
+					title={strings.clear}
 					color='red'
 					onPress={() => {
 						this.setState({
@@ -175,7 +174,7 @@ export default class Search extends Component {
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.isPub}
-					label='Public '
+					label={strings.public}
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
@@ -191,7 +190,7 @@ export default class Search extends Component {
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.isPriv}
-					label='Private'
+					label={strings.private}
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
@@ -208,7 +207,7 @@ export default class Search extends Component {
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.isProf}
-					label='Profit        '
+					label={strings.profit}
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
@@ -225,7 +224,7 @@ export default class Search extends Component {
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.isNonProf}
-					label='Non-Profit'
+					label={strings.nonProfit}
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
@@ -242,7 +241,7 @@ export default class Search extends Component {
 				<ToggleSwitch
 					style={styles.searchFilterItem}
 					isOn={this.state.hasSport}
-					label='Sports Facility'
+					label={strings.sportsFacility}
 					size='medium'
 					onColor='green'
 					onToggle={(isOn) => {
@@ -341,11 +340,11 @@ export default class Search extends Component {
 								onPress={() => {
 								    if (!this.userAppliedTo(item.id, this.state.submissions)) {
                                         Alert.alert(
-                                            `Apply to ${item.name}?`,
-                                            `Are you sure you want to apply to ${item.name}? They will be sent your entire application.`,
+                                            `${strings.applyTo} ${item.name}?`,
+                                            `${strings.areYouSureApply} ${item.name}? ${strings.theyWillBeSent}.`,
                                             [
-                                                {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                                                {text: 'Apply', onPress: () => {
+                                                {text: strings.cancel, onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                                                {text: strings.apply, onPress: () => {
                                                         navigate("Payment", {university: item, onComplete: () => {this.updateSubmissions()}});
 
                                                     }},

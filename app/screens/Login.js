@@ -3,11 +3,9 @@ import {
   Button,
   Container,
   Content,
-  Footer,
   InputGroup,
   Input,
   Icon,
-  Spinner,
   Text,
   View,
 } from 'native-base'
@@ -63,7 +61,7 @@ export default class Login extends Component {
         this.props.navigation.navigate("Home");
       })
       .catch(() => {
-        Alert.alert("Invalid Username and Password.");
+        Alert.alert(strings.invalidNamePwd);
       });
 
   }
@@ -74,7 +72,7 @@ export default class Login extends Component {
         this.props.navigation.navigate("Home");
       })
       .catch(() => {
-        Alert.alert("Unable to login with Facebook.");
+        Alert.alert(strings.unableFBLogin);
       });
   }
 
@@ -85,7 +83,7 @@ export default class Login extends Component {
       })
       .catch((error) => {
         console.log(error);
-        Alert.alert("Unable to login with Google.");
+        Alert.alert(strings.unableGoogLogin);
       })
   }
 

@@ -12,6 +12,7 @@ import {
 import {requestPayment} from "../api/mobileMoney";
 import {Database} from "../models/Database";
 import {Alert} from "react-native";
+import { strings } from "../config/LanguageTranslations"
 
 export default class Payment extends Component {
     constructor(props) {
@@ -40,12 +41,12 @@ export default class Payment extends Component {
 
     apply() {
         if (this.state.id.length != 10 || !/^\d+$/.test(this.state.id)) {
-            Alert.alert("Please enter a valid, 10 digit phone number.");
+            Alert.alert(strings.validTenDigit);
         } else {
             const university = this.props.navigation.getParam("university");
-            requestPayment(this.state.id, "Payment to " + university.name, "49.99",`${Math.floor(Math.random * 99999999)}`).then(() => {
+            requestPayment(this.state.id, strings.paymentTo + university.name, "49.99",`${Math.floor(Math.random * 99999999)}`).then(() => {
                 Database.applyTo(university.id);
-                Alert.alert(`Successfully Applied to ${university.name}!`, "Your application has been successfully submitted, pending fee payment through your Mobile Money account.")
+                Alert.alert(`${strings.successfullyApplied} ${university.name}!`, strings.applicationPendingPayment)
                 this.props.navigation.navigate("Home");
                 //this.props.navigation.getParam("onComplete")();
             }).catch(error => {
@@ -60,8 +61,8 @@ export default class Payment extends Component {
         return (
             <Container style={{...colorStyles.primary, backgroundColor: "white"}}>
                 <View style={{margin:20, fontSize:15}}>
-                    <Text>{university.name} charges an application fee of <Text style={{fontWeight: "bold"}}>$49.99</Text>.
-                        In order to complete your application, please enter your Mobile Money ID (phone number) and click Pay.</Text>
+                    <Text>{university.name} {strings.chargesAppFee} <Text style={{fontWeight: "bold"}}>$49.99</Text>. 
+                         {strings.inOrderToComplete}.</Text>
                 </View>
 
                 <Form>
@@ -70,7 +71,7 @@ export default class Payment extends Component {
                         <Input placeholder="0000000000" style={{ textAlign: 'right' }} value={this.state.id} onChangeText={(value) => {this.setState({id: value})}}/>
                     </Item>
                     <Button full style={{borderWidth: 2, borderColor: 'lightgrey', borderRadius:15,  margin:20}} onPress={() => {this.apply()}}>
-                        <Text>Pay Fee and Submit Application</Text>
+                        <Text>{strings.payFeeSubmit}</Text>
                     </Button>
                 </Form>
             </Container>

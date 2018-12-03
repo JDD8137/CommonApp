@@ -2,17 +2,15 @@ import React, { Component } from "react";
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 import {Avatar, Text} from 'react-native-elements';
-import { Database } from "../models/Database"
+import { Database } from "../models/Database";
+import { strings } from "../config/LanguageTranslations";
 
 import {
   Button,
   Container,
   Content,
-  Footer,
   InputGroup,
   Input,
-  Icon,
-  Spinner,
   View,
 } from 'native-base'
 
@@ -38,7 +36,7 @@ export default class EditProfile extends Component {
     headerTitleStyle: {
       color: '#FFFFFF',
     },
-    title: 'Edit Profile'
+    title: strings.editProfile
     // headerLeft:
     //   <HeaderBarItem to='Home' title='User Profile' />
     // headerRight:
@@ -67,7 +65,7 @@ export default class EditProfile extends Component {
         <View style={styles.EditProfileContainer}>
             <View style={styles.ProfileSub}>
                 <Text style={styles.EditProfileLabel}>
-                        First Name
+                        {strings.firstName}
                 </Text>
                 <Content contentContainerStyle={{flex:1, flexDirection: "column", alignItems:"center",paddingLeft: 12,paddingRight: 12,}}>
                     <InputGroup>
@@ -88,7 +86,7 @@ export default class EditProfile extends Component {
 
             <View style={styles.ProfileSub}>
                 <Text style={styles.EditProfileLabel}>
-                        Last Name
+                        {strings.lastName}
                 </Text>
                 <Content contentContainerStyle={{flex:1, flexDirection: "column", alignItems:"center",paddingLeft: 12,paddingRight: 12,}}>
                     <InputGroup>
@@ -108,7 +106,7 @@ export default class EditProfile extends Component {
 
             <View style={styles.ProfileSub}>
                 <Text style={styles.EditProfileLabel}>
-                        Email
+                        {strings.email}
                 </Text>
                 <Content contentContainerStyle={{flex:1, flexDirection: "column", alignItems:"center",paddingLeft: 12,paddingRight: 12,}}>
                     <InputGroup>
@@ -126,16 +124,13 @@ export default class EditProfile extends Component {
                     </InputGroup>
                 </Content>
             </View>
-
-
-            {/* TODO: Logout User */}
-        <Button
-            transparent
-            style={{alignContent: 'center', justifyContent: 'center', flex: 3}}>
-                <Text h4 style={styles.SettingsButtons}> Save</Text>
-        </Button>
-          </View>
+        </View>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', paddingBottom: 60}}>
         
+            <Button transparent onPress={() => this.props.navigation.navigate('Profile')}>
+                        <Text h4 style={styles.SettingsButtons}> {strings.submit} </Text>
+            </Button>
+        </View>
       </Container>
     );
   }

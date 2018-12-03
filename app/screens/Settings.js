@@ -3,16 +3,8 @@ import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 
 import {
-  Button,
   Container,
-  Content,
-  Footer,
-  InputGroup,
-  Input,
-  Icon,
-  Spinner,
-  Text,
-  View,
+  Text
 } from 'native-base'
 
 

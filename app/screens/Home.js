@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import {
-  Button,
   Container,
-  Content,
-  Footer,
-  Input,
   Icon,
-  Spinner,
   Text,
   View,
 } from 'native-base'
@@ -15,7 +10,7 @@ import { colorStyles, colorPalette } from "../styles/colorStyles"
 import { Database } from "../models/Database"
 import DropdownAlert from 'react-native-dropdownalert';
 import {Avatar} from 'react-native-elements';
-import { strings } from "../config/LanguageTranslations"
+import { strings } from "../config/LanguageTranslations";
 
 
 export default class Home extends Component {

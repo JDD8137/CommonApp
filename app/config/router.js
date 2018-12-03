@@ -8,6 +8,7 @@ import {
   createMaterialBottomTabNavigator
 } from 'native-base'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
+import { strings } from "../config/LanguageTranslations";
 
 import Login from '../screens/Login';
 import Signup from '../screens/Signup';
@@ -17,7 +18,7 @@ import Settings from '../screens/Settings';
 import Profile from '../screens/Profile';
 import MyColleges from '../screens/MyColleges'
 import EditProfile from '../screens/EditProfile'
-import Notifications from '../screens/EditProfile'
+import Notifications from '../screens/Notifications'
 import PaymentOptions from '../screens/PaymentOptions'
 import EditApplication from "../screens/EditApplication"
 import Payment from "../screens/Payment"
@@ -58,7 +59,7 @@ export const BottomNav = TabNavigator({
     screen: Login,
     navigationOptions: {
       headerLeft: null,
-      headerTitle: "Logout",
+      headerTitle: strings.logout,
       logout: true,
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon
@@ -72,7 +73,7 @@ export const BottomNav = TabNavigator({
   HomeStack: {
     screen: HomeStack,
     navigationOptions: {
-      tabBarLabel: 'Home',
+      tabBarLabel: strings.home,
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon
           type={"MaterialCommunityIcons"}
@@ -89,6 +90,7 @@ export const BottomNav = TabNavigator({
     screen: Settings,
     navigationOptions: {
       headerLeft: null,
+      tabBarLabel: strings.settings,
       tabBarIcon: ({ tintColor, focused }) => (
         <Icon
           type={"MaterialCommunityIcons"}
@@ -96,9 +98,6 @@ export const BottomNav = TabNavigator({
           size={25}
           style={{color: tintColor}}/>
       ),
-      // tabBarOptions: {
-      //   activeTintColor: '#000000',
-      // }
     }
   },
  }, {

@@ -3,23 +3,14 @@ import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 
 import {
-  Button,
   Container,
-  Content,
-  Footer,
-  InputGroup,
-  Input,
-  Icon,
-  Spinner,
   Text,
   View,
-    List,
-    ListItem,
-    Body
 } from 'native-base'
 
 import { getUniversities, contains } from "../api/index";
 import { Database } from "../models/Database"
+import { strings } from "../config/LanguageTranslations";
 
 export default class Status extends Component {
   constructor(props) {
@@ -53,7 +44,7 @@ export default class Status extends Component {
     headerTitleStyle: {
       color: '#FFFFFF',
     },
-    title: 'My Colleges'
+    title: strings.myColleges
   });
 
   
@@ -63,10 +54,10 @@ export default class Status extends Component {
       <Container style={colorStyles.primary}>
         <View style={styles.StatusHeaderContainer}>
             <Text style={styles.StatusHeader}>
-                UNIVERSITY
+                {strings.universities}
             </Text>
             <Text style={styles.StatusHeader}>
-                STATUS
+                {strings.status}
             </Text>
         </View>
           <View style={{...styles.StatusHeaderContainer, backgroundColor: ""}}>

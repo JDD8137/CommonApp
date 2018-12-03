@@ -1,19 +1,11 @@
 import React, { Component } from "react";
 import {
-  Body,
   Button,
   Container,
   Content,
-  Footer,
-  Header,
   InputGroup,
   Input,
   Icon,
-  Item,
-  Left,
-  Picker,
-  Right,
-  Spinner,
   Text,
   View
 } from 'native-base'
@@ -55,7 +47,7 @@ export default class Signup extends Component {
   register() {
     const { email, password, confirmPassword, name } = this.state;
     if (password != confirmPassword) {
-      Alert.alert("Passwords do not match. Please try again");
+      Alert.alert(strings.pswdsDontMatch);
     } else {
       this.state.disableAutoLogin = true;
       Authenticator.register(email, password)
@@ -67,7 +59,7 @@ export default class Signup extends Component {
           })
         })
         .catch((error) => {
-          Alert.alert("Unable to create account.");
+          Alert.alert(strings.unableToCreateAccount);
         });
     }
 

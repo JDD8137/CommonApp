@@ -3,17 +3,9 @@ import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 
 import {
-  Button,
-  Container,
-  Content,
-  Footer,
-  InputGroup,
-  Input,
-  Icon,
-  Spinner,
-  Text,
-  View,
+  Container
 } from 'native-base'
+import { strings } from "../config/LanguageTranslations";
 
 
 export default class PaymentOptions extends Component {
@@ -31,7 +23,7 @@ export default class PaymentOptions extends Component {
     headerTitleStyle: {
       color: '#FFFFFF',
     },
-    title: 'Payment Options'
+    title: strings.editPaymentOptions
     // headerLeft:
     //   <HeaderBarItem to='Home' title='User Profile' />
     // headerRight:
@@ -43,14 +35,6 @@ export default class PaymentOptions extends Component {
     const { navigate } = this.props.navigation;
     return (
       <Container style={colorStyles.primary}>
-        <View style={styles.StatusHeaderContainer}>
-            <Text style={styles.StatusHeader}>
-                STATUS
-            </Text>
-            <Text style={styles.StatusHeader}>
-                DEADLINE
-            </Text>
-        </View>
         
       </Container>
     );

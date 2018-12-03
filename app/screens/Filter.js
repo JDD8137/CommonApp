@@ -10,6 +10,7 @@ import {
 import { styles } from '../styles/styles'
 import { colorStyles, colorPalette } from "../styles/colorStyles"
 import _ from "lodash";
+import { strings } from "../config/LanguageTranslations"
 
 export default class Search extends Component {
   constructor(props) {
@@ -25,7 +26,6 @@ export default class Search extends Component {
   }
 
   static navigationOptions = () => ({
-    // title: 'Filter Universities',
     headerStyle: {
       backgroundColor: colorPalette.primary,
       shadowRadius: 0,
